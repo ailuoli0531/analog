@@ -66,23 +66,20 @@ public class AffixActivity extends BaseActivity {
     }
 
     private void initData() {
+        affixBeanList = new ArrayList<>();
+        adapter = new AffixAdapter();
+        listView.setAdapter(adapter);
+
         if(type==0){
-            affixBeanList = new ArrayList<>();
             AffixBean bean1 = Helper.createAffixBean(Helper.getAffixByName("力量"));
             AffixBean bean2 = Helper.createAffixBean(Helper.getAffixByName("攻速"));
             AffixBean bean3 = Helper.createAffixBean(Helper.getAffixByName("最大攻击力提升"));
             affixBeanList.add(bean1);
             affixBeanList.add(bean2);
             affixBeanList.add(bean3);
-            int length = Helper.getLength();
 
-            for(int i=0;i<length;i++){
-                AffixBean bean = Helper.getAffixBean(affixBeanList,0);
-                affixBeanList.add(bean);
-            }
+            wash();
 
-            adapter = new AffixAdapter();
-            listView.setAdapter(adapter);
         }
     }
 
@@ -116,9 +113,14 @@ public class AffixActivity extends BaseActivity {
 
     private  class AffixAdapter extends BaseAdapter{
         private LayoutInflater inflater;
+        private int pink,purple;
         public AffixAdapter(){
             inflater = LayoutInflater.from(AffixActivity.this);
+            pink = getResources().getColor(R.color.pink);
+            purple = getResources().getColor(R.color.purple);
         }
+
+
         @Override
         public int getCount() {
             return affixBeanList.size();
@@ -142,6 +144,15 @@ public class AffixActivity extends BaseActivity {
             AffixBean affixBean = affixBeanList.get(i);
             name.setText(affixBean.getName());
             describe.setText(String.valueOf(affixBean.getSpace()));
+
+            if(affixBeanList.size()>4){
+                name.setTextColor(purple);
+                describe.setTextColor(purple);
+            }else{
+                name.setTextColor(pink);
+                describe.setTextColor(pink);
+            }
+
             return view;
         }
     }

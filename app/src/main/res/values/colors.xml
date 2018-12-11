@@ -6,4 +6,6 @@
     <color name="purple">#EF00FE</color>
     <color name="green">#00FF00</color>
     <color name="pink">#F382F3</color>
+    <color name="black">#000000</color>
+    <color name="transparent">#00000000</color>
 </resources>
