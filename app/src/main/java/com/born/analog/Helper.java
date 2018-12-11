@@ -24,80 +24,95 @@ public class Helper {
 
     /**
      * 生成min-max并包含 int整数
+     *
      * @param min
      * @param max
      * @return
      */
-    public static int getRandom(int min,int max){
+    public static int getRandom(int min, int max) {
         Random random = new Random();
-        int randNum = random.nextInt(max-min+1) + min;
+        int randNum = random.nextInt(max - min + 1) + min;
         return randNum;
     }
 
     /**
      * 随机生成的额外词条长度
+     *
      * @return
      */
-    public static int getLength(){
-        int cur = getRandom(1,1000);
-        if(cur<=Pro_7){
-            return 7-3;
-        }else if(cur<=(Pro_7+Pro_6)){
-            return 6-3;
-        }else if(cur<=(Pro_7+Pro_6+Pro_5)){
-            return 5-3;
-        }else{
-            return 4-3;
+    public static int getLength() {
+        int cur = getRandom(1, 1000);
+        if (cur <= Pro_7) {
+            return 7 - 3;
+        } else if (cur <= (Pro_7 + Pro_6)) {
+            return 6 - 3;
+        } else if (cur <= (Pro_7 + Pro_6 + Pro_5)) {
+            return 5 - 3;
+        } else {
+            return 4 - 3;
         }
     }
 
     /**
      * 获取下一条词条
      * type 装备类型
+     *
      * @return
      */
-    public static AffixBean getAffixBean(List<AffixBean> affixBeanList,int type){
-        if(type==0){
-            //武器
-            return getAffixBeanWeapon(affixBeanList);
-        }
-        return null;
+    public static AffixBean getAffixBean(List<AffixBean> affixBeanList, int type) {
+
+        return getAffixBeanWeapon(affixBeanList, type);
     }
 
     /**
      * 根据已有词缀生成下一条词缀
+     *
      * @param affixBeanList
      * @return
      */
-    public static AffixBean getAffixBeanWeapon(List<AffixBean> affixBeanList){
-        List<Affix> wepon = new ArrayList<>(AnaLog.Affix_Weapon);
+    public static AffixBean getAffixBeanWeapon(List<AffixBean> affixBeanList, int type) {
+        List<Affix> affixList;
+        if (type == 0) {
+            affixList = new ArrayList<>(AnaLog.Affix_Weapon);
+        } else if (type == 1) {
+            affixList = new ArrayList<>(AnaLog.Affix_Armour);
+        } else if (type == 2) {
+            affixList = new ArrayList<>(AnaLog.Affix_Hand);
+        } else if (type == 3) {
+            affixList = new ArrayList<>(AnaLog.Affix_Shoes);
+        } else if (type == 4) {
+            affixList = new ArrayList<>(AnaLog.Affix_Necklace);
+        } else {
+            affixList = new ArrayList<>(AnaLog.AffixList);
+        }
 
-        dealList(affixBeanList, wepon);
+        dealList(affixBeanList, affixList);
         //过滤完后，获取总概率值
-        int totalPro = getTotalPro(wepon);
+        int totalPro = getTotalPro(affixList);
         //生成范围内随机值
-        int curPro = getRandom(1,totalPro);
+        int curPro = getRandom(1, totalPro);
         //获取当前词条
-        Affix affix = getAffixByNum(wepon,curPro);
+        Affix affix = getAffixByNum(affixList, curPro);
         //生成装备词缀
         return createAffixBean(affix);
     }
 
     /**
      * 处理一下集合数据
+     *
      * @param affixBeanList
      * @param affixList
      */
     private static void dealList(List<AffixBean> affixBeanList, List<Affix> affixList) {
-        for(AffixBean affixBean : affixBeanList){
+        for (AffixBean affixBean : affixBeanList) {
             //存在哪个，哪个的概率就减少1/N
-            Affix affix = getAffixByName(affixBean.getName(),affixList);
-            int maxPro = affix.getMaxPro()-1;
-            if(maxPro<=0){
+            Affix affix = getAffixByName(affixBean.getName(), affixList);
+            int maxPro = affix.getMaxPro() - 1;
+            if (maxPro <= 0) {
                 //已经超过最大出现次数，移除掉
                 affixList.remove(affix);
-            }else{
-                int pro = affix.getPro()-(affix.getPro()/affix.getMaxPro());
+            } else {
+                int pro = affix.getPro() - (affix.getPro() / affix.getMaxPro());
                 affix.setPro(pro);
                 affix.setMaxPro(maxPro);
             }
@@ -106,21 +121,22 @@ public class Helper {
 
     /**
      * 根据词条 生成当前的词缀
+     *
      * @param affix
      * @return
      */
-    public static AffixBean createAffixBean(Affix affix){
+    public static AffixBean createAffixBean(Affix affix) {
         AffixBean affixBean = new AffixBean();
         affixBean.setName(affix.getName());
         affixBean.setType(affix.getType());
         int type = affix.getType();
-        if(type==0 || type==3){
+        if (type == 0 || type == 3) {
             //大小值或百分比最大最小
-            int num = getRandom(affix.getMinSpace(),affix.getMaxSpace());
+            int num = getRandom(affix.getMinSpace(), affix.getMaxSpace());
             affixBean.setSpace(num);
-        }else if(type==1){
+        } else if (type == 1) {
             //没有
-        }else if(type==2){
+        } else if (type == 2) {
             //固定百分比
             affixBean.setSpace(affix.getSpace());
         }
@@ -129,15 +145,16 @@ public class Helper {
 
     /**
      * 通过生成的随机值，获取当前的词条
+     *
      * @param affixList
      * @param cur
      * @return
      */
-    private static Affix getAffixByNum(List<Affix> affixList,int cur){
-        int length=0;
-        for(Affix affix : affixList){
-            length +=affix.getPro();
-            if(cur<=length){
+    private static Affix getAffixByNum(List<Affix> affixList, int cur) {
+        int length = 0;
+        for (Affix affix : affixList) {
+            length += affix.getPro();
+            if (cur <= length) {
                 return affix;
             }
         }
@@ -146,12 +163,13 @@ public class Helper {
 
     /**
      * 通过名字查找词条
+     *
      * @param name
      * @return
      */
-    public static Affix getAffixByName(String name){
-        for(Affix affix : AnaLog.AffixList){
-            if(affix.getName().equals(name)){
+    public static Affix getAffixByName(String name) {
+        for (Affix affix : AnaLog.AffixList) {
+            if (affix.getName().equals(name)) {
                 return affix;
             }
         }
@@ -160,12 +178,13 @@ public class Helper {
 
     /**
      * 通过名字查找词条
+     *
      * @param name
      * @return
      */
-    public static Affix getAffixByName(String name,List<Affix> affixList){
-        for(Affix affix : affixList){
-            if(affix.getName().equals(name)){
+    public static Affix getAffixByName(String name, List<Affix> affixList) {
+        for (Affix affix : affixList) {
+            if (affix.getName().equals(name)) {
                 return affix;
             }
         }
@@ -174,13 +193,14 @@ public class Helper {
 
     /**
      * 获取总概率值
+     *
      * @param affixList
      * @return
      */
-    public static int getTotalPro(List<Affix> affixList){
+    public static int getTotalPro(List<Affix> affixList) {
         int total = 0;
-        for(Affix affix : affixList){
-            total+=affix.getPro();
+        for (Affix affix : affixList) {
+            total += affix.getPro();
         }
         return total;
     }

@@ -4,7 +4,6 @@ import android.content.Context;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * created by born on 2018/12/10.
@@ -13,6 +12,10 @@ public class AnaLog {
     private static AnaLog anaLog;
     public static List<Affix> AffixList = new ArrayList<>();
     public static List<Affix> Affix_Weapon = new ArrayList<>();
+    public static List<Affix> Affix_Armour = new ArrayList<>();
+    public static List<Affix> Affix_Hand = new ArrayList<>();
+    public static List<Affix> Affix_Shoes = new ArrayList<>();
+    public static List<Affix> Affix_Necklace = new ArrayList<>();
 
     public static void init(Context context){
 
@@ -24,6 +27,9 @@ public class AnaLog {
 
         AffixList.clear();
         Affix_Weapon.clear();
+        Affix_Armour.clear();
+        Affix_Hand.clear();
+        Affix_Shoes.clear();
 
         Affix power = getAffix();
         power.setName("力量");
@@ -34,6 +40,8 @@ public class AnaLog {
         power.setMaxPro(5);
         AffixList.add(power);
         Affix_Weapon.add(power);
+        Affix_Hand.add(power);
+        Affix_Necklace.add(power);
 
         Affix minAttack = getAffix();
         minAttack.setName("最小攻击力增加");
@@ -44,6 +52,7 @@ public class AnaLog {
         minAttack.setMaxPro(4);
         AffixList.add(minAttack);
         Affix_Weapon.add(minAttack);
+        Affix_Necklace.add(minAttack);
 
         Affix minAttackP=getAffix();
         minAttackP.setName("最小攻击力提升");
@@ -54,6 +63,7 @@ public class AnaLog {
         minAttackP.setMaxPro(3);
         AffixList.add(minAttackP);
         Affix_Weapon.add(minAttackP);
+
 
         Affix maxAttack = getAffix();
         maxAttack.setName("最大攻击力增加");
@@ -82,6 +92,8 @@ public class AnaLog {
         endAttack.setMaxPro(7);
         AffixList.add(endAttack);
         Affix_Weapon.add(endAttack);
+        Affix_Hand.add(endAttack);
+        Affix_Necklace.add(endAttack);
 
         Affix defender = getAffix();
         defender.setName("防御");
@@ -91,6 +103,9 @@ public class AnaLog {
         defender.setPro(400);
         defender.setMaxPro(4);
         AffixList.add(defender);
+        Affix_Armour.add(defender);
+        Affix_Hand.add(defender);
+        Affix_Shoes.add(defender);
 
         Affix endDef = getAffix();
         endDef.setName("最终伤害减少");
@@ -100,6 +115,9 @@ public class AnaLog {
         endDef.setPro(700);
         endDef.setMaxPro(7);
         AffixList.add(endDef);
+        Affix_Armour.add(endDef);
+        Affix_Hand.add(endDef);
+        Affix_Shoes.add(endDef);
 
         Affix endDefP=getAffix();
         endDefP.setName("最终免伤");
@@ -109,7 +127,9 @@ public class AnaLog {
         endDefP.setPro(1);
         endDefP.setPro(10);
         AffixList.add(endDefP);
-
+        Affix_Armour.add(endDefP);
+        Affix_Hand.add(endDefP);
+        Affix_Shoes.add(endDefP);
 
         Affix agility = getAffix();
         agility.setName("敏捷");
@@ -120,6 +140,10 @@ public class AnaLog {
         agility.setMaxPro(5);
         AffixList.add(agility);
         Affix_Weapon.add(agility);
+        Affix_Armour.add(agility);
+        Affix_Hand.add(agility);
+        Affix_Shoes.add(agility);
+        Affix_Necklace.add(agility);
 
         Affix accurate = getAffix();
         accurate.setName("精准");
@@ -130,6 +154,7 @@ public class AnaLog {
         accurate.setMaxPro(6);
         AffixList.add(accurate);
         Affix_Weapon.add(accurate);
+        Affix_Hand.add(accurate);
 
         Affix elude = getAffix();
         elude.setName("闪避");
@@ -139,6 +164,8 @@ public class AnaLog {
         elude.setPro(600);
         elude.setMaxPro(6);
         AffixList.add(elude);
+        Affix_Armour.add(elude);
+        Affix_Shoes.add(elude);
 
         Affix critP = getAffix();
         critP.setName("暴击率");
@@ -149,6 +176,7 @@ public class AnaLog {
         critP.setMaxPro(3);
         AffixList.add(critP);
         Affix_Weapon.add(critP);
+        Affix_Necklace.add(critP);
 
         Affix TcritP = getAffix();
         TcritP.setName("抗暴率");
@@ -158,6 +186,9 @@ public class AnaLog {
         TcritP.setPro(90);
         TcritP.setMaxPro(3);
         AffixList.add(TcritP);
+        Affix_Armour.add(TcritP);
+        Affix_Hand.add(TcritP);
+        Affix_Shoes.add(TcritP);
 
         Affix crit = getAffix();
         crit.setName("暴击伤害增加");
@@ -168,6 +199,7 @@ public class AnaLog {
         crit.setMaxPro(4);
         AffixList.add(crit);
         Affix_Weapon.add(crit);
+        Affix_Necklace.add(crit);
 
         Affix Tcrit = getAffix();
         Tcrit.setName("暴击伤害减少");
@@ -177,6 +209,9 @@ public class AnaLog {
         Tcrit.setPro(400);
         Tcrit.setMaxPro(4);
         AffixList.add(Tcrit);
+        Affix_Armour.add(Tcrit);
+        Affix_Hand.add(Tcrit);
+        Affix_Shoes.add(Tcrit);
 
         Affix critAttackP = getAffix();
         critAttackP.setName("暴击伤害提升");
@@ -187,6 +222,7 @@ public class AnaLog {
         critAttackP.setMaxPro(3);
         AffixList.add(critAttackP);
         Affix_Weapon.add(critAttackP);
+        Affix_Necklace.add(critAttackP);
 
         Affix critDefP = getAffix();
         critDefP.setName("暴击伤害减免");
@@ -196,6 +232,9 @@ public class AnaLog {
         critDefP.setPro(60);
         critDefP.setMaxPro(3);
         AffixList.add(critDefP);
+        Affix_Armour.add(critDefP);
+        Affix_Hand.add(critDefP);
+        Affix_Shoes.add(critDefP);
 
         Affix blood = getAffix();
         blood.setName("气血");
@@ -205,7 +244,9 @@ public class AnaLog {
         blood.setPro(400);
         blood.setMaxPro(4);
         AffixList.add(blood);
-
+        Affix_Armour.add(blood);
+        Affix_Hand.add(blood);
+        Affix_Shoes.add(blood);
 
         Affix speed = getAffix();
         speed.setType(2);
@@ -224,6 +265,9 @@ public class AnaLog {
         gold.setMaxPro(3);
         AffixList.add(gold);
         Affix_Weapon.add(gold);
+        Affix_Armour.add(gold);
+        Affix_Hand.add(gold);
+        Affix_Shoes.add(gold);
     }
 
     private static Affix getAffix(){

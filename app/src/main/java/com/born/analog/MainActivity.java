@@ -1,10 +1,20 @@
 package com.born.analog;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.GridView;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends BaseActivity {
+    private GridView gridView;
+    private List<GoodsBean> beanList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -13,13 +23,78 @@ public class MainActivity extends BaseActivity {
 
         AnaLog.init(this);
 
-        findViewById(R.id.hello).setOnClickListener(new View.OnClickListener() {
+        initView();
+        initGoods();
+    }
+
+    private void initView() {
+        gridView = findViewById(R.id.gridview);
+    }
+
+    private void initGoods() {
+        beanList = new ArrayList<>();
+        GoodsBean weapon = new GoodsBean();
+        weapon.setName("武器");
+        weapon.setType(0);
+        beanList.add(weapon);
+
+        GoodsBean armour = new GoodsBean();
+        armour.setName("护甲");
+        armour.setType(1);
+        beanList.add(armour);
+
+        GoodsBean hand = new GoodsBean();
+        hand.setName("护手");
+        hand.setType(2);
+        beanList.add(hand);
+
+        GoodsBean shoes = new GoodsBean();
+        shoes.setName("护腿");
+        shoes.setType(3);
+        beanList.add(shoes);
+
+        GoodsBean necklace = new GoodsBean();
+        necklace.setName("项链");
+        necklace.setType(3);
+        beanList.add(necklace);
+
+        gridView.setAdapter(new GridAdapter());
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View view) {
-                AffixActivity.open(MainActivity.this,0);
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                AffixActivity.open(MainActivity.this, beanList.get(i).getType());
             }
         });
     }
 
+    private class GridAdapter extends BaseAdapter {
+        private LayoutInflater layoutInflater;
+        public GridAdapter() {
+            layoutInflater = LayoutInflater.from(MainActivity.this);
+        }
+
+        @Override
+        public int getCount() {
+            return beanList.size();
+        }
+
+        @Override
+        public Object getItem(int i) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int i, View view, ViewGroup viewGroup) {
+            view = layoutInflater.inflate(R.layout.item_goods,null);
+            final TextView textView = view.findViewById(R.id.goods_name);
+            textView.setText(beanList.get(i).getName());
+            return view;
+        }
+    }
 
 }

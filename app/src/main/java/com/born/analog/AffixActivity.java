@@ -21,7 +21,7 @@ public class AffixActivity extends BaseActivity {
     public static String EXTRA_TYPE = "extra_type";
 
     /**
-     * type:0武器 1护甲 2手套 3项链 4护腿
+     * type:0武器 1护甲 2手套 3护腿 4项链
      * @param activity
      * @param type
      */
@@ -69,18 +69,36 @@ public class AffixActivity extends BaseActivity {
         affixBeanList = new ArrayList<>();
         adapter = new AffixAdapter();
         listView.setAdapter(adapter);
-
+        AffixBean bean1 = null;
+        AffixBean bean2 = null;
+        AffixBean bean3 = null;
         if(type==0){
-            AffixBean bean1 = Helper.createAffixBean(Helper.getAffixByName("力量"));
-            AffixBean bean2 = Helper.createAffixBean(Helper.getAffixByName("攻速"));
-            AffixBean bean3 = Helper.createAffixBean(Helper.getAffixByName("最大攻击力提升"));
-            affixBeanList.add(bean1);
-            affixBeanList.add(bean2);
-            affixBeanList.add(bean3);
-
-            wash();
+             bean1 = Helper.createAffixBean(Helper.getAffixByName("力量"));
+             bean2 = Helper.createAffixBean(Helper.getAffixByName("攻速"));
+             bean3 = Helper.createAffixBean(Helper.getAffixByName("最大攻击力提升"));
+        }else if(type==1){
+            bean1 = Helper.createAffixBean(Helper.getAffixByName("气血"));
+            bean2 = Helper.createAffixBean(Helper.getAffixByName("暴击伤害减少"));
+            bean3 = Helper.createAffixBean(Helper.getAffixByName("防御"));
+        }else if(type==2){
+            bean1 = Helper.createAffixBean(Helper.getAffixByName("敏捷"));
+            bean2 = Helper.createAffixBean(Helper.getAffixByName("力量"));
+            bean3 = Helper.createAffixBean(Helper.getAffixByName("精准"));
+        }else if(type==3){
+            bean1 = Helper.createAffixBean(Helper.getAffixByName("敏捷"));
+            bean2 = Helper.createAffixBean(Helper.getAffixByName("气血"));
+            bean3 = Helper.createAffixBean(Helper.getAffixByName("闪避"));
+        }else if(type==4){
+            bean2 = Helper.createAffixBean(Helper.getAffixByName("敏捷"));
+            bean3 = Helper.createAffixBean(Helper.getAffixByName("力量"));
+            bean1 = Helper.createAffixBean(Helper.getAffixByName("暴击伤害增加"));
+        }else if(type==5){
 
         }
+        affixBeanList.add(bean1);
+        affixBeanList.add(bean2);
+        affixBeanList.add(bean3);
+        wash();
     }
 
     /**
@@ -102,7 +120,7 @@ public class AffixActivity extends BaseActivity {
 
         int length = Helper.getLength();
         for(int i=0;i<length;i++){
-            AffixBean bean = Helper.getAffixBean(affixBeans,0);
+            AffixBean bean = Helper.getAffixBean(affixBeans,type);
             affixBeans.add(bean);
         }
         affixBeanList.clear();
