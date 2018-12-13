@@ -2,6 +2,8 @@ package com.born.analog;
 
 import android.content.Context;
 
+import com.born.analog.module.Affix;
+
 import java.util.ArrayList;
 import java.util.List;
 

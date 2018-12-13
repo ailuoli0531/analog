@@ -1,5 +1,8 @@
 package com.born.analog;
 
+import com.born.analog.module.Affix;
+import com.born.analog.module.AffixBean;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

@@ -11,6 +11,9 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.born.analog.module.Affix;
+import com.born.analog.module.AffixBean;
+
 import java.util.ArrayList;
 import java.util.List;
 

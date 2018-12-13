@@ -1,9 +1,9 @@
-package com.born.analog;
+package com.born.analog.module;
 
 /**
  * created by born on 2018/12/11.
  */
-public class GoodsBean {
+public class SelectBean {
     private String name;
     private int type;
 

@@ -9,12 +9,14 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.TextView;
 
+import com.born.analog.module.SelectBean;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends BaseActivity {
     private GridView gridView;
-    private List<GoodsBean> beanList;
+    private List<SelectBean> beanList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,27 +35,27 @@ public class MainActivity extends BaseActivity {
 
     private void initGoods() {
         beanList = new ArrayList<>();
-        GoodsBean weapon = new GoodsBean();
+        SelectBean weapon = new SelectBean();
         weapon.setName("武器");
         weapon.setType(0);
         beanList.add(weapon);
 
-        GoodsBean armour = new GoodsBean();
+        SelectBean armour = new SelectBean();
         armour.setName("护甲");
         armour.setType(1);
         beanList.add(armour);
 
-        GoodsBean hand = new GoodsBean();
+        SelectBean hand = new SelectBean();
         hand.setName("护手");
         hand.setType(2);
         beanList.add(hand);
 
-        GoodsBean shoes = new GoodsBean();
+        SelectBean shoes = new SelectBean();
         shoes.setName("护腿");
         shoes.setType(3);
         beanList.add(shoes);
 
-        GoodsBean necklace = new GoodsBean();
+        SelectBean necklace = new SelectBean();
         necklace.setName("项链");
         necklace.setType(3);
         beanList.add(necklace);
