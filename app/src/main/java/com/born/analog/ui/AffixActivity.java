@@ -1,4 +1,4 @@
-package com.born.analog;
+package com.born.analog.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.born.analog.Helper;
+import com.born.analog.R;
 import com.born.analog.module.Affix;
 import com.born.analog.module.AffixBean;
 

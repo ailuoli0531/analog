@@ -1,4 +1,4 @@
-package com.born.analog;
+package com.born.analog.ui;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +9,8 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.TextView;
 
+import com.born.analog.AnaLog;
+import com.born.analog.R;
 import com.born.analog.module.SelectBean;
 
 import java.util.ArrayList;
