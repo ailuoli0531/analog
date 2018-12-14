@@ -1,5 +1,7 @@
 package com.born.analog.util;
 
+import com.born.analog.module.Goods;
+
 /**
  * created by born on 2018/12/13.
  */
@@ -16,6 +18,7 @@ public class IdUtil {
         sb.append(cur);
         return sb.toString();
     }
+
 
     /**
      * 根据goods的ID创建内部的每个词条Id

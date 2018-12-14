@@ -4,6 +4,7 @@ import com.born.analog.util.IdUtil;
 
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.annotation.Unique;
 
 /**
  * created by born on 2018/12/13.
@@ -29,13 +30,14 @@ public class Goods {
     }
 
     //唯一id
+    @Unique
     private String id;
     //类型
     private int type;
     //名称
     private String name;
     //词条个数
-    private String length;
+    private int length;
     //生成时间
     private long create_time;
     //缔造者
@@ -55,8 +57,8 @@ public class Goods {
     private String id_eight;
     private String id_nine;
     private String id_ten;
-    @Generated(hash = 1730564855)
-    public Goods(String id, int type, String name, String length, long create_time,
+    @Generated(hash = 1314041761)
+    public Goods(String id, int type, String name, int length, long create_time,
             String creater, String owner, String base_type, String id_one,
             String id_two, String id_three, String id_four, String id_five,
             String id_six, String id_seven, String id_eight, String id_nine,
@@ -101,10 +103,10 @@ public class Goods {
     public void setName(String name) {
         this.name = name;
     }
-    public String getLength() {
+    public int getLength() {
         return this.length;
     }
-    public void setLength(String length) {
+    public void setLength(int length) {
         this.length = length;
     }
     public long getCreate_time() {
@@ -191,4 +193,5 @@ public class Goods {
     public void setId_ten(String id_ten) {
         this.id_ten = id_ten;
     }
+
 }

@@ -66,7 +66,7 @@ public class MainActivity extends BaseActivity {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                AffixActivity.open(MainActivity.this, beanList.get(i).getType());
+                ListActivity.open(MainActivity.this, beanList.get(i).getType());
             }
         });
     }

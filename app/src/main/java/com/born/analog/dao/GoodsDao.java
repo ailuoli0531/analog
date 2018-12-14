@@ -28,7 +28,7 @@ public class GoodsDao extends AbstractDao<Goods, Void> {
         public final static Property Id = new Property(0, String.class, "id", false, "ID");
         public final static Property Type = new Property(1, int.class, "type", false, "TYPE");
         public final static Property Name = new Property(2, String.class, "name", false, "NAME");
-        public final static Property Length = new Property(3, String.class, "length", false, "LENGTH");
+        public final static Property Length = new Property(3, int.class, "length", false, "LENGTH");
         public final static Property Create_time = new Property(4, long.class, "create_time", false, "CREATE_TIME");
         public final static Property Creater = new Property(5, String.class, "creater", false, "CREATER");
         public final static Property Owner = new Property(6, String.class, "owner", false, "OWNER");
@@ -58,10 +58,10 @@ public class GoodsDao extends AbstractDao<Goods, Void> {
     public static void createTable(Database db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"GOODS\" (" + //
-                "\"ID\" TEXT," + // 0: id
+                "\"ID\" TEXT UNIQUE ," + // 0: id
                 "\"TYPE\" INTEGER NOT NULL ," + // 1: type
                 "\"NAME\" TEXT," + // 2: name
-                "\"LENGTH\" TEXT," + // 3: length
+                "\"LENGTH\" INTEGER NOT NULL ," + // 3: length
                 "\"CREATE_TIME\" INTEGER NOT NULL ," + // 4: create_time
                 "\"CREATER\" TEXT," + // 5: creater
                 "\"OWNER\" TEXT," + // 6: owner
@@ -98,11 +98,7 @@ public class GoodsDao extends AbstractDao<Goods, Void> {
         if (name != null) {
             stmt.bindString(3, name);
         }
- 
-        String length = entity.getLength();
-        if (length != null) {
-            stmt.bindString(4, length);
-        }
+        stmt.bindLong(4, entity.getLength());
         stmt.bindLong(5, entity.getCreate_time());
  
         String creater = entity.getCreater();
@@ -185,11 +181,7 @@ public class GoodsDao extends AbstractDao<Goods, Void> {
         if (name != null) {
             stmt.bindString(3, name);
         }
- 
-        String length = entity.getLength();
-        if (length != null) {
-            stmt.bindString(4, length);
-        }
+        stmt.bindLong(4, entity.getLength());
         stmt.bindLong(5, entity.getCreate_time());
  
         String creater = entity.getCreater();
@@ -269,7 +261,7 @@ public class GoodsDao extends AbstractDao<Goods, Void> {
             cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0), // id
             cursor.getInt(offset + 1), // type
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // name
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // length
+            cursor.getInt(offset + 3), // length
             cursor.getLong(offset + 4), // create_time
             cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // creater
             cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // owner
@@ -293,7 +285,7 @@ public class GoodsDao extends AbstractDao<Goods, Void> {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0));
         entity.setType(cursor.getInt(offset + 1));
         entity.setName(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setLength(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setLength(cursor.getInt(offset + 3));
         entity.setCreate_time(cursor.getLong(offset + 4));
         entity.setCreater(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
         entity.setOwner(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));

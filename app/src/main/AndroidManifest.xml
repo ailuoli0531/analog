@@ -21,6 +21,8 @@
         </activity>
         <activity android:name=".ui.AffixActivity"
             android:theme="@style/FullScreen"/>
+        <activity android:name=".ui.ListActivity"
+            android:theme="@style/FullScreen"/>
     </application>
 
 </manifest>

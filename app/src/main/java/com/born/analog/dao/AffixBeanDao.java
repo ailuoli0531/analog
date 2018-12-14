@@ -45,7 +45,7 @@ public class AffixBeanDao extends AbstractDao<AffixBean, Void> {
     public static void createTable(Database db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"AFFIX_BEAN\" (" + //
-                "\"ID\" TEXT," + // 0: id
+                "\"ID\" TEXT UNIQUE ," + // 0: id
                 "\"TAG\" TEXT," + // 1: tag
                 "\"NAME\" TEXT," + // 2: name
                 "\"TYPE\" INTEGER NOT NULL ," + // 3: type

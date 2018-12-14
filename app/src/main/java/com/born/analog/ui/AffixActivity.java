@@ -13,8 +13,11 @@ import android.widget.TextView;
 
 import com.born.analog.Helper;
 import com.born.analog.R;
+import com.born.analog.manager.DbAffixManager;
+import com.born.analog.manager.DbGoodsManager;
 import com.born.analog.module.Affix;
 import com.born.analog.module.AffixBean;
+import com.born.analog.module.Goods;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,25 +26,26 @@ import java.util.List;
  * created by born on 2018/12/10.
  */
 public class AffixActivity extends BaseActivity {
-    public static String EXTRA_TYPE = "extra_type";
+    public static String EXTRA_ID = "extra_id";
 
     /**
      * type:0武器 1护甲 2手套 3护腿 4项链
      * @param activity
-     * @param type
+     * @param goodsId
      */
-    public static void open(BaseActivity activity,int type){
+    public static void open(BaseActivity activity,String goodsId){
         Intent intent = new Intent(activity,AffixActivity.class);
-        intent.putExtra(EXTRA_TYPE,type);
+        intent.putExtra(EXTRA_ID,goodsId);
         activity.start(intent);
     }
 
-    private int type;
+    private String goodsId;
     private ListView listView;
     private TextView textView;
     private List<AffixBean> affixBeanList;
     private AffixAdapter adapter;
     private Button reset,crash,chou;
+    private Goods goods;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +56,7 @@ public class AffixActivity extends BaseActivity {
     }
 
     private void parseIntent() {
-        type = getIntent().getIntExtra(EXTRA_TYPE,0);
+        goodsId = getIntent().getStringExtra(EXTRA_ID);
     }
 
     private void initView() {
@@ -74,60 +78,73 @@ public class AffixActivity extends BaseActivity {
         affixBeanList = new ArrayList<>();
         adapter = new AffixAdapter();
         listView.setAdapter(adapter);
-        AffixBean bean1 = null;
-        AffixBean bean2 = null;
-        AffixBean bean3 = null;
-        if(type==0){
-             bean1 = Helper.createAffixBean(Helper.getAffixByName("力量"));
-             bean2 = Helper.createAffixBean(Helper.getAffixByName("攻速"));
-             bean3 = Helper.createAffixBean(Helper.getAffixByName("最大攻击力提升"));
-        }else if(type==1){
-            bean1 = Helper.createAffixBean(Helper.getAffixByName("气血"));
-            bean2 = Helper.createAffixBean(Helper.getAffixByName("暴击伤害减少"));
-            bean3 = Helper.createAffixBean(Helper.getAffixByName("防御"));
-        }else if(type==2){
-            bean1 = Helper.createAffixBean(Helper.getAffixByName("敏捷"));
-            bean2 = Helper.createAffixBean(Helper.getAffixByName("力量"));
-            bean3 = Helper.createAffixBean(Helper.getAffixByName("精准"));
-        }else if(type==3){
-            bean1 = Helper.createAffixBean(Helper.getAffixByName("敏捷"));
-            bean2 = Helper.createAffixBean(Helper.getAffixByName("气血"));
-            bean3 = Helper.createAffixBean(Helper.getAffixByName("闪避"));
-        }else if(type==4){
-            bean2 = Helper.createAffixBean(Helper.getAffixByName("敏捷"));
-            bean3 = Helper.createAffixBean(Helper.getAffixByName("力量"));
-            bean1 = Helper.createAffixBean(Helper.getAffixByName("暴击伤害增加"));
-        }else if(type==5){
+//        AffixBean bean1 = null;
+//        AffixBean bean2 = null;
+//        AffixBean bean3 = null;
+//        if(type==0){
+//             bean1 = Helper.createAffixBean(Helper.getAffixByName("力量"));
+//             bean2 = Helper.createAffixBean(Helper.getAffixByName("攻速"));
+//             bean3 = Helper.createAffixBean(Helper.getAffixByName("最大攻击力提升"));
+//        }else if(type==1){
+//            bean1 = Helper.createAffixBean(Helper.getAffixByName("气血"));
+//            bean2 = Helper.createAffixBean(Helper.getAffixByName("暴击伤害减少"));
+//            bean3 = Helper.createAffixBean(Helper.getAffixByName("防御"));
+//        }else if(type==2){
+//            bean1 = Helper.createAffixBean(Helper.getAffixByName("敏捷"));
+//            bean2 = Helper.createAffixBean(Helper.getAffixByName("力量"));
+//            bean3 = Helper.createAffixBean(Helper.getAffixByName("精准"));
+//        }else if(type==3){
+//            bean1 = Helper.createAffixBean(Helper.getAffixByName("敏捷"));
+//            bean2 = Helper.createAffixBean(Helper.getAffixByName("气血"));
+//            bean3 = Helper.createAffixBean(Helper.getAffixByName("闪避"));
+//        }else if(type==4){
+//            bean2 = Helper.createAffixBean(Helper.getAffixByName("敏捷"));
+//            bean3 = Helper.createAffixBean(Helper.getAffixByName("力量"));
+//            bean1 = Helper.createAffixBean(Helper.getAffixByName("暴击伤害增加"));
+//        }else if(type==5){
+//
+//        }
+//        affixBeanList.add(bean1);
+//        affixBeanList.add(bean2);
+//        affixBeanList.add(bean3);
 
+        if(goodsId==null){
+            finish();
         }
-        affixBeanList.add(bean1);
-        affixBeanList.add(bean2);
-        affixBeanList.add(bean3);
-        wash();
+
+        goods = DbGoodsManager.getInstance().getGoodsById(goodsId);
+        affixBeanList.add(DbAffixManager.getInstance().getAffixById(goods.getId_one()));
+        affixBeanList.add(DbAffixManager.getInstance().getAffixById(goods.getId_two()));
+        affixBeanList.add(DbAffixManager.getInstance().getAffixById(goods.getId_three()));
+
+        for(int i =1;i<=goods.getLength();i++){
+            if(i==1){
+                affixBeanList.add(DbAffixManager.getInstance().getAffixById(goods.getId_four()));
+            }else if(i==2){
+                affixBeanList.add(DbAffixManager.getInstance().getAffixById(goods.getId_five()));
+            }else if(i==3){
+                affixBeanList.add(DbAffixManager.getInstance().getAffixById(goods.getId_six()));
+            }else if(i==4){
+                affixBeanList.add(DbAffixManager.getInstance().getAffixById(goods.getId_seven()));
+            }else if(i==5){
+                affixBeanList.add(DbAffixManager.getInstance().getAffixById(goods.getId_eight()));
+            }
+        }
+
+        adapter.notifyDataSetChanged();
     }
 
     /**
      * 洗装备
      */
     private void wash(){
-        List<AffixBean> affixBeans = new ArrayList<>();
 
-        for(int i=0;i<3;i++){
-            AffixBean affixBean = affixBeanList.get(i);
-            if(affixBean.getType()==0 || affixBean.getType()==3){
-                Affix affix = Helper.getAffixByName(affixBean.getName());
-                affixBean.setSpace(Helper.getRandom(affix.getMinSpace(),affix.getMaxSpace()));
-                affixBeans.add(affixBean);
-            }else{
-                affixBeans.add(affixBean);
-            }
-        }
+        goods.setLength(Helper.getLength());
+        List<AffixBean> affixBeans = DbAffixManager.getInstance().createAffixList(goods);
 
-        int length = Helper.getLength();
-        for(int i=0;i<length;i++){
-            AffixBean bean = Helper.getAffixBean(affixBeans,type);
-            affixBeans.add(bean);
-        }
+        DbAffixManager.getInstance().insert(affixBeans);
+        DbGoodsManager.getInstance().insert(goods);
+
         affixBeanList.clear();
         affixBeanList.addAll(affixBeans);
         adapter.notifyDataSetChanged();

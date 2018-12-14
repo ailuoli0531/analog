@@ -2,6 +2,7 @@ package com.born.analog.module;
 
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.annotation.Unique;
 
 /**
  * created by born on 2018/12/10.
@@ -9,6 +10,7 @@ import org.greenrobot.greendao.annotation.Generated;
 @Entity
 public class AffixBean {
     //唯一id
+    @Unique
     private String id;
     //属性代号
     private String tag;

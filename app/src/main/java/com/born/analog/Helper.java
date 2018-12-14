@@ -57,23 +57,12 @@ public class Helper {
     }
 
     /**
-     * 获取下一条词条
-     * type 装备类型
-     *
-     * @return
-     */
-    public static AffixBean getAffixBean(List<AffixBean> affixBeanList, int type) {
-
-        return getAffixBeanWeapon(affixBeanList, type);
-    }
-
-    /**
      * 根据已有词缀生成下一条词缀
-     *
+     *type 装备类型
      * @param affixBeanList
      * @return
      */
-    public static AffixBean getAffixBeanWeapon(List<AffixBean> affixBeanList, int type) {
+    public static AffixBean getAffixBean(List<AffixBean> affixBeanList,String id, int type) {
         List<Affix> affixList;
         if (type == 0) {
             affixList = new ArrayList<>(AnaLog.Affix_Weapon);
@@ -97,7 +86,7 @@ public class Helper {
         //获取当前词条
         Affix affix = getAffixByNum(affixList, curPro);
         //生成装备词缀
-        return createAffixBean(affix);
+        return createAffixBean(id,affix);
     }
 
     /**
@@ -128,8 +117,9 @@ public class Helper {
      * @param affix
      * @return
      */
-    public static AffixBean createAffixBean(Affix affix) {
+    public static AffixBean createAffixBean(String id,Affix affix) {
         AffixBean affixBean = new AffixBean();
+        affixBean.setId(id);
         affixBean.setName(affix.getName());
         affixBean.setType(affix.getType());
         int type = affix.getType();
