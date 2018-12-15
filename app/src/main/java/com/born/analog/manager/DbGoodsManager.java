@@ -8,7 +8,6 @@ import com.born.analog.module.Goods;
 
 import org.greenrobot.greendao.query.WhereCondition;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -93,9 +92,9 @@ public class DbGoodsManager {
     public void createWeapon(Goods goods){
         goods.setName("四象灭魔刀 + "+getGoodsByType(goods.getType()).size());
         goods.setLength(Helper.getLength());
-        AffixBean bean1 = Helper.createAffixBean(goods.getId_one(),Helper.getAffixByName("力量"));
-        AffixBean bean2 = Helper.createAffixBean(goods.getId_two(),Helper.getAffixByName("攻速"));
-        AffixBean bean3 = Helper.createAffixBean(goods.getId_three(),Helper.getAffixByName("最大攻击力提升"));
+        AffixBean bean1 = Helper.createAffixBean(goods.getId_1(),Helper.getAffixByName("力量"));
+        AffixBean bean2 = Helper.createAffixBean(goods.getId_2(),Helper.getAffixByName("攻速"));
+        AffixBean bean3 = Helper.createAffixBean(goods.getId_3(),Helper.getAffixByName("最大攻击力提升"));
         DbAffixManager.getInstance().insert(bean1);
         DbAffixManager.getInstance().insert(bean2);
         DbAffixManager.getInstance().insert(bean3);
@@ -112,9 +111,9 @@ public class DbGoodsManager {
     public void createArmour(Goods goods){
         goods.setName("四象护甲 + "+getGoodsByType(goods.getType()).size());
         goods.setLength(Helper.getLength());
-        AffixBean bean1 = Helper.createAffixBean(goods.getId_one(),Helper.getAffixByName("气血"));
-        AffixBean bean2 = Helper.createAffixBean(goods.getId_two(),Helper.getAffixByName("暴击伤害减少"));
-        AffixBean bean3 = Helper.createAffixBean(goods.getId_three(),Helper.getAffixByName("防御"));
+        AffixBean bean1 = Helper.createAffixBean(goods.getId_1(),Helper.getAffixByName("气血"));
+        AffixBean bean2 = Helper.createAffixBean(goods.getId_2(),Helper.getAffixByName("暴击伤害减少"));
+        AffixBean bean3 = Helper.createAffixBean(goods.getId_3(),Helper.getAffixByName("防御"));
         DbAffixManager.getInstance().insert(bean1);
         DbAffixManager.getInstance().insert(bean2);
         DbAffixManager.getInstance().insert(bean3);
@@ -131,9 +130,9 @@ public class DbGoodsManager {
     public void createHand(Goods goods){
         goods.setName("四象护手 + "+getGoodsByType(goods.getType()).size());
         goods.setLength(Helper.getLength());
-        AffixBean bean1 = Helper.createAffixBean(goods.getId_one(),Helper.getAffixByName("敏捷"));
-        AffixBean bean2 = Helper.createAffixBean(goods.getId_two(),Helper.getAffixByName("力量"));
-        AffixBean bean3 = Helper.createAffixBean(goods.getId_three(),Helper.getAffixByName("精准"));
+        AffixBean bean1 = Helper.createAffixBean(goods.getId_1(),Helper.getAffixByName("敏捷"));
+        AffixBean bean2 = Helper.createAffixBean(goods.getId_2(),Helper.getAffixByName("力量"));
+        AffixBean bean3 = Helper.createAffixBean(goods.getId_3(),Helper.getAffixByName("精准"));
         DbAffixManager.getInstance().insert(bean1);
         DbAffixManager.getInstance().insert(bean2);
         DbAffixManager.getInstance().insert(bean3);
@@ -150,9 +149,9 @@ public class DbGoodsManager {
     public void createShoes(Goods goods){
         goods.setName("四象足具 + "+getGoodsByType(goods.getType()).size());
         goods.setLength(Helper.getLength());
-        AffixBean bean1 = Helper.createAffixBean(goods.getId_one(),Helper.getAffixByName("敏捷"));
-        AffixBean bean2 = Helper.createAffixBean(goods.getId_two(),Helper.getAffixByName("气血"));
-        AffixBean bean3 = Helper.createAffixBean(goods.getId_three(),Helper.getAffixByName("闪避"));
+        AffixBean bean1 = Helper.createAffixBean(goods.getId_1(),Helper.getAffixByName("敏捷"));
+        AffixBean bean2 = Helper.createAffixBean(goods.getId_2(),Helper.getAffixByName("气血"));
+        AffixBean bean3 = Helper.createAffixBean(goods.getId_3(),Helper.getAffixByName("闪避"));
         DbAffixManager.getInstance().insert(bean1);
         DbAffixManager.getInstance().insert(bean2);
         DbAffixManager.getInstance().insert(bean3);
@@ -169,9 +168,9 @@ public class DbGoodsManager {
     public void createNecklace(Goods goods){
         goods.setName("四象项链 + "+getGoodsByType(goods.getType()).size());
         goods.setLength(Helper.getLength());
-        AffixBean bean1 = Helper.createAffixBean(goods.getId_one(),Helper.getAffixByName("敏捷"));
-        AffixBean bean2 = Helper.createAffixBean(goods.getId_two(),Helper.getAffixByName("力量"));
-        AffixBean bean3 = Helper.createAffixBean(goods.getId_three(),Helper.getAffixByName("暴击伤害增加"));
+        AffixBean bean1 = Helper.createAffixBean(goods.getId_1(),Helper.getAffixByName("敏捷"));
+        AffixBean bean2 = Helper.createAffixBean(goods.getId_2(),Helper.getAffixByName("力量"));
+        AffixBean bean3 = Helper.createAffixBean(goods.getId_3(),Helper.getAffixByName("暴击伤害增加"));
         DbAffixManager.getInstance().insert(bean1);
         DbAffixManager.getInstance().insert(bean2);
         DbAffixManager.getInstance().insert(bean3);
@@ -189,7 +188,8 @@ public class DbGoodsManager {
     public void useGoods(Goods goods){
         goods.setUse(1);
         WhereCondition wc = GoodsDao.Properties.Use.eq(1);
-        List<Goods> goodsList = goodsDao.queryBuilder().where(wc).list();
+        WhereCondition wc2 = GoodsDao.Properties.Type.eq(goods.getType());
+        List<Goods> goodsList = goodsDao.queryBuilder().where(wc,wc2).list();
         if(goodsList!=null && !goodsList.isEmpty()){
             for(Goods g : goodsList){
                 g.setUse(0);

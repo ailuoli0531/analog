@@ -1,9 +1,18 @@
 package com.born.analog;
 
-import com.born.analog.manager.DbGoodsManager;
+import android.database.Cursor;
+import android.util.Log;
+import android.widget.Toast;
+
+import com.born.analog.dao.AffixBeanDao;
+import com.born.analog.dao.DaoHelper;
+import com.born.analog.dao.GoodsDao;
 import com.born.analog.module.Affix;
 import com.born.analog.module.AffixBean;
 import com.born.analog.module.Goods;
+
+import org.greenrobot.greendao.query.Query;
+import org.greenrobot.greendao.query.WhereCondition;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -200,5 +209,57 @@ public class Helper {
         return total;
     }
 
+    /**
+     * 查询属性
+     * @param name
+     * @return
+     */
+    public static int QueryPro(String name){
+        int space = 0;
+        WhereCondition wc1 = GoodsDao.Properties.Use.eq(1);
+        List<Goods> goodsList = DaoHelper.getInstance().getSession().getGoodsDao().queryBuilder()
+                .where(wc1)
+                .list();
+        if(!goodsList.isEmpty()){
+            for(Goods goods : goodsList){
+                for(int i=1;i<=goods.getLength();i++){
+                    AffixBean bean = querySql(goods,i,name);
+                    if(bean!=null){
+                        space = bean.getSpace();
+                    }
+                }
+            }
+        }
+        WhereCondition wc2 = AffixBeanDao.Properties.Name.eq(name);
+        return space;
 
+    }
+
+    private static AffixBean querySql(Goods goods,int position,String name){
+        String sql = "SELECT * FROM " + AffixBeanDao.TABLENAME + " INNER JOIN " + GoodsDao.TABLENAME
+                    + " ON "
+                    + GoodsDao.TABLENAME+"." + "ID_"+position + " = "
+                    + AffixBeanDao.TABLENAME+"."+AffixBeanDao.Properties.Id.columnName
+                    + " AND "
+                    + GoodsDao.TABLENAME +"." + GoodsDao.Properties.Use.columnName + " = 1"
+                    + " AND "
+                    + AffixBeanDao.TABLENAME+"."+AffixBeanDao.Properties.Name.columnName + " = '" + name + "'";
+
+//        String sql = "SELECT * FROM " + AffixBeanDao.TABLENAME
+//                + " WHERE "
+//                + AffixBeanDao.Properties.Name.columnName + " = '" + name + "'";
+
+//        Query query = DaoHelper.getInstance().getSession().
+//                getAffixBeanDao().queryRawCreate(sql);
+
+        Cursor cursor = DaoHelper.getInstance().getSession().getDatabase().rawQuery(sql,null);
+
+        while (cursor.moveToNext()){
+            Log.e("GreenDao",cursor.getString(cursor.getColumnIndex(AffixBeanDao.Properties.Space.columnName)));
+        }
+//        AffixBean bean = (AffixBean) query.unique();
+//        return bean;
+
+        return null;
+    }
 }

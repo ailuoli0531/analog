@@ -58,11 +58,11 @@ public class DbAffixManager {
         for(int i=1;i<=3;i++){
             AffixBean affixBean = null;
             if(i==1){
-                affixBean = DbAffixManager.getInstance().getAffixById(goods.getId_one());
+                affixBean = DbAffixManager.getInstance().getAffixById(goods.getId_1());
             }else if(i==2){
-                affixBean = DbAffixManager.getInstance().getAffixById(goods.getId_two());
+                affixBean = DbAffixManager.getInstance().getAffixById(goods.getId_2());
             }else if(i==3){
-                affixBean = DbAffixManager.getInstance().getAffixById(goods.getId_three());
+                affixBean = DbAffixManager.getInstance().getAffixById(goods.getId_3());
             }
             if(affixBean.getType()==0 || affixBean.getType()==3){
                 Affix affix = Helper.getAffixByName(affixBean.getName());
@@ -75,23 +75,23 @@ public class DbAffixManager {
 
         for(int i=1;i<=goods.getLength();i++){
             if(i==1){
-                AffixBean affixBean = Helper.getAffixBean(affixBeanList,goods.getId_four(),goods.getType());
+                AffixBean affixBean = Helper.getAffixBean(affixBeanList,goods.getId_4(),goods.getType());
                 DbAffixManager.getInstance().insert(affixBean);
                 affixBeanList.add(affixBean);
             }else if(i==2){
-                AffixBean affixBean = Helper.getAffixBean(affixBeanList,goods.getId_five(),goods.getType());
+                AffixBean affixBean = Helper.getAffixBean(affixBeanList,goods.getId_5(),goods.getType());
                 DbAffixManager.getInstance().insert(affixBean);
                 affixBeanList.add(affixBean);
             }else if(i==3){
-                AffixBean affixBean = Helper.getAffixBean(affixBeanList,goods.getId_six(),goods.getType());
+                AffixBean affixBean = Helper.getAffixBean(affixBeanList,goods.getId_6(),goods.getType());
                 DbAffixManager.getInstance().insert(affixBean);
                 affixBeanList.add(affixBean);
             }else if(i==4){
-                AffixBean affixBean = Helper.getAffixBean(affixBeanList,goods.getId_seven(),goods.getType());
+                AffixBean affixBean = Helper.getAffixBean(affixBeanList,goods.getId_7(),goods.getType());
                 DbAffixManager.getInstance().insert(affixBean);
                 affixBeanList.add(affixBean);
             }else if(i==5){
-                AffixBean affixBean = Helper.getAffixBean(affixBeanList,goods.getId_eight(),goods.getType());
+                AffixBean affixBean = Helper.getAffixBean(affixBeanList,goods.getId_8(),goods.getType());
                 DbAffixManager.getInstance().insert(affixBean);
                 affixBeanList.add(affixBean);
             }

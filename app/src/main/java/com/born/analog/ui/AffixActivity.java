@@ -15,7 +15,6 @@ import com.born.analog.Helper;
 import com.born.analog.R;
 import com.born.analog.manager.DbAffixManager;
 import com.born.analog.manager.DbGoodsManager;
-import com.born.analog.module.Affix;
 import com.born.analog.module.AffixBean;
 import com.born.analog.module.Goods;
 
@@ -90,21 +89,21 @@ public class AffixActivity extends BaseActivity implements View.OnClickListener 
 
         checkUse();
 
-        affixBeanList.add(DbAffixManager.getInstance().getAffixById(goods.getId_one()));
-        affixBeanList.add(DbAffixManager.getInstance().getAffixById(goods.getId_two()));
-        affixBeanList.add(DbAffixManager.getInstance().getAffixById(goods.getId_three()));
+        affixBeanList.add(DbAffixManager.getInstance().getAffixById(goods.getId_1()));
+        affixBeanList.add(DbAffixManager.getInstance().getAffixById(goods.getId_2()));
+        affixBeanList.add(DbAffixManager.getInstance().getAffixById(goods.getId_3()));
 
         for(int i =1;i<=goods.getLength();i++){
             if(i==1){
-                affixBeanList.add(DbAffixManager.getInstance().getAffixById(goods.getId_four()));
+                affixBeanList.add(DbAffixManager.getInstance().getAffixById(goods.getId_4()));
             }else if(i==2){
-                affixBeanList.add(DbAffixManager.getInstance().getAffixById(goods.getId_five()));
+                affixBeanList.add(DbAffixManager.getInstance().getAffixById(goods.getId_5()));
             }else if(i==3){
-                affixBeanList.add(DbAffixManager.getInstance().getAffixById(goods.getId_six()));
+                affixBeanList.add(DbAffixManager.getInstance().getAffixById(goods.getId_6()));
             }else if(i==4){
-                affixBeanList.add(DbAffixManager.getInstance().getAffixById(goods.getId_seven()));
+                affixBeanList.add(DbAffixManager.getInstance().getAffixById(goods.getId_7()));
             }else if(i==5){
-                affixBeanList.add(DbAffixManager.getInstance().getAffixById(goods.getId_eight()));
+                affixBeanList.add(DbAffixManager.getInstance().getAffixById(goods.getId_8()));
             }
         }
 

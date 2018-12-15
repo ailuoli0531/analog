@@ -17,77 +17,17 @@ public class Goods {
         String goodsId = IdUtil.createId(type);
         goods.setType(type);
         goods.setId(goodsId);
-        goods.setId_one(IdUtil.createId(goodsId,"one"));
-        goods.setId_two(IdUtil.createId(goodsId,"two"));
-        goods.setId_three(IdUtil.createId(goodsId,"three"));
-        goods.setId_four(IdUtil.createId(goodsId,"four"));
-        goods.setId_five(IdUtil.createId(goodsId,"five"));
-        goods.setId_six(IdUtil.createId(goodsId,"six"));
-        goods.setId_seven(IdUtil.createId(goodsId,"seven"));
-        goods.setId_eight(IdUtil.createId(goodsId,"eight"));
-        goods.setId_nine(IdUtil.createId(goodsId,"nine"));
-        goods.setId_ten(IdUtil.createId(goodsId,"ten"));
+        goods.setId_1(IdUtil.createId(goodsId,"one"));
+        goods.setId_2(IdUtil.createId(goodsId,"two"));
+        goods.setId_3(IdUtil.createId(goodsId,"three"));
+        goods.setId_4(IdUtil.createId(goodsId,"four"));
+        goods.setId_5(IdUtil.createId(goodsId,"five"));
+        goods.setId_6(IdUtil.createId(goodsId,"six"));
+        goods.setId_7(IdUtil.createId(goodsId,"seven"));
+        goods.setId_8(IdUtil.createId(goodsId,"eight"));
+        goods.setId_9(IdUtil.createId(goodsId,"nine"));
+        goods.setId_10(IdUtil.createId(goodsId,"ten"));
         return goods;
-    }
-
-    //唯一id
-    @Unique
-    private String id;
-    //类型
-    private int type;
-    //名称
-    private String name;
-    //词条个数
-    private int length;
-    //生成时间
-    private long create_time;
-    //缔造者
-    private String creater;
-    //拥有者
-    private String owner;
-    //是否正在穿戴 0未穿戴 1穿戴，同类型只能穿戴一条
-    private int use;
-    //基础属性类型
-    private String base_type;
-    //词条id
-    private String id_one;
-    private String id_two;
-    private String id_three;
-    private String id_four;
-    private String id_five;
-    private String id_six;
-    private String id_seven;
-    private String id_eight;
-    private String id_nine;
-    private String id_ten;
-    @Generated(hash = 651318009)
-    public Goods(String id, int type, String name, int length, long create_time,
-            String creater, String owner, int use, String base_type, String id_one,
-            String id_two, String id_three, String id_four, String id_five,
-            String id_six, String id_seven, String id_eight, String id_nine,
-            String id_ten) {
-        this.id = id;
-        this.type = type;
-        this.name = name;
-        this.length = length;
-        this.create_time = create_time;
-        this.creater = creater;
-        this.owner = owner;
-        this.use = use;
-        this.base_type = base_type;
-        this.id_one = id_one;
-        this.id_two = id_two;
-        this.id_three = id_three;
-        this.id_four = id_four;
-        this.id_five = id_five;
-        this.id_six = id_six;
-        this.id_seven = id_seven;
-        this.id_eight = id_eight;
-        this.id_nine = id_nine;
-        this.id_ten = id_ten;
-    }
-    @Generated(hash = 1770709345)
-    public Goods() {
     }
     public String getId() {
         return this.id;
@@ -131,77 +71,136 @@ public class Goods {
     public void setOwner(String owner) {
         this.owner = owner;
     }
-    public String getBase_type() {
-        return this.base_type;
-    }
-    public void setBase_type(String base_type) {
-        this.base_type = base_type;
-    }
-    public String getId_one() {
-        return this.id_one;
-    }
-    public void setId_one(String id_one) {
-        this.id_one = id_one;
-    }
-    public String getId_two() {
-        return this.id_two;
-    }
-    public void setId_two(String id_two) {
-        this.id_two = id_two;
-    }
-    public String getId_three() {
-        return this.id_three;
-    }
-    public void setId_three(String id_three) {
-        this.id_three = id_three;
-    }
-    public String getId_four() {
-        return this.id_four;
-    }
-    public void setId_four(String id_four) {
-        this.id_four = id_four;
-    }
-    public String getId_five() {
-        return this.id_five;
-    }
-    public void setId_five(String id_five) {
-        this.id_five = id_five;
-    }
-    public String getId_six() {
-        return this.id_six;
-    }
-    public void setId_six(String id_six) {
-        this.id_six = id_six;
-    }
-    public String getId_seven() {
-        return this.id_seven;
-    }
-    public void setId_seven(String id_seven) {
-        this.id_seven = id_seven;
-    }
-    public String getId_eight() {
-        return this.id_eight;
-    }
-    public void setId_eight(String id_eight) {
-        this.id_eight = id_eight;
-    }
-    public String getId_nine() {
-        return this.id_nine;
-    }
-    public void setId_nine(String id_nine) {
-        this.id_nine = id_nine;
-    }
-    public String getId_ten() {
-        return this.id_ten;
-    }
-    public void setId_ten(String id_ten) {
-        this.id_ten = id_ten;
-    }
     public int getUse() {
         return this.use;
     }
     public void setUse(int use) {
         this.use = use;
     }
+    public String getBase_type() {
+        return this.base_type;
+    }
+    public void setBase_type(String base_type) {
+        this.base_type = base_type;
+    }
+    public String getId_1() {
+        return this.id_1;
+    }
+    public void setId_1(String id_1) {
+        this.id_1 = id_1;
+    }
+    public String getId_2() {
+        return this.id_2;
+    }
+    public void setId_2(String id_2) {
+        this.id_2 = id_2;
+    }
+    public String getId_3() {
+        return this.id_3;
+    }
+    public void setId_3(String id_3) {
+        this.id_3 = id_3;
+    }
+    public String getId_4() {
+        return this.id_4;
+    }
+    public void setId_4(String id_4) {
+        this.id_4 = id_4;
+    }
+    public String getId_5() {
+        return this.id_5;
+    }
+    public void setId_5(String id_5) {
+        this.id_5 = id_5;
+    }
+    public String getId_6() {
+        return this.id_6;
+    }
+    public void setId_6(String id_6) {
+        this.id_6 = id_6;
+    }
+    public String getId_7() {
+        return this.id_7;
+    }
+    public void setId_7(String id_7) {
+        this.id_7 = id_7;
+    }
+    public String getId_8() {
+        return this.id_8;
+    }
+    public void setId_8(String id_8) {
+        this.id_8 = id_8;
+    }
+    public String getId_9() {
+        return this.id_9;
+    }
+    public void setId_9(String id_9) {
+        this.id_9 = id_9;
+    }
+    public String getId_10() {
+        return this.id_10;
+    }
+    public void setId_10(String id_10) {
+        this.id_10 = id_10;
+    }
 
+    //唯一id
+    @Unique
+    private String id;
+    //类型
+    private int type;
+    //名称
+    private String name;
+    //词条个数
+    private int length;
+    //生成时间
+    private long create_time;
+    //缔造者
+    private String creater;
+    //拥有者
+    private String owner;
+    //是否正在穿戴 0未穿戴 1穿戴，同类型只能穿戴一条
+    private int use;
+    //基础属性类型
+    private String base_type;
+    //词条id
+    private String id_1;
+    private String id_2;
+    private String id_3;
+    private String id_4;
+    private String id_5;
+    private String id_6;
+    private String id_7;
+    private String id_8;
+    private String id_9;
+    private String id_10;
+    @Generated(hash = 111393729)
+    public Goods(String id, int type, String name, int length, long create_time,
+            String creater, String owner, int use, String base_type, String id_1,
+            String id_2, String id_3, String id_4, String id_5, String id_6,
+            String id_7, String id_8, String id_9, String id_10) {
+        this.id = id;
+        this.type = type;
+        this.name = name;
+        this.length = length;
+        this.create_time = create_time;
+        this.creater = creater;
+        this.owner = owner;
+        this.use = use;
+        this.base_type = base_type;
+        this.id_1 = id_1;
+        this.id_2 = id_2;
+        this.id_3 = id_3;
+        this.id_4 = id_4;
+        this.id_5 = id_5;
+        this.id_6 = id_6;
+        this.id_7 = id_7;
+        this.id_8 = id_8;
+        this.id_9 = id_9;
+        this.id_10 = id_10;
+    }
+    @Generated(hash = 1770709345)
+    public Goods() {
+    }
+   
 }
