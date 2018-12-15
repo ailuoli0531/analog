@@ -45,6 +45,8 @@ public class Goods {
     private String creater;
     //拥有者
     private String owner;
+    //是否正在穿戴 0未穿戴 1穿戴，同类型只能穿戴一条
+    private int use;
     //基础属性类型
     private String base_type;
     //词条id
@@ -58,9 +60,9 @@ public class Goods {
     private String id_eight;
     private String id_nine;
     private String id_ten;
-    @Generated(hash = 1314041761)
+    @Generated(hash = 651318009)
     public Goods(String id, int type, String name, int length, long create_time,
-            String creater, String owner, String base_type, String id_one,
+            String creater, String owner, int use, String base_type, String id_one,
             String id_two, String id_three, String id_four, String id_five,
             String id_six, String id_seven, String id_eight, String id_nine,
             String id_ten) {
@@ -71,6 +73,7 @@ public class Goods {
         this.create_time = create_time;
         this.creater = creater;
         this.owner = owner;
+        this.use = use;
         this.base_type = base_type;
         this.id_one = id_one;
         this.id_two = id_two;
@@ -193,6 +196,12 @@ public class Goods {
     }
     public void setId_ten(String id_ten) {
         this.id_ten = id_ten;
+    }
+    public int getUse() {
+        return this.use;
+    }
+    public void setUse(int use) {
+        this.use = use;
     }
 
 }

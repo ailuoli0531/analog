@@ -32,17 +32,18 @@ public class GoodsDao extends AbstractDao<Goods, Void> {
         public final static Property Create_time = new Property(4, long.class, "create_time", false, "CREATE_TIME");
         public final static Property Creater = new Property(5, String.class, "creater", false, "CREATER");
         public final static Property Owner = new Property(6, String.class, "owner", false, "OWNER");
-        public final static Property Base_type = new Property(7, String.class, "base_type", false, "BASE_TYPE");
-        public final static Property Id_one = new Property(8, String.class, "id_one", false, "ID_ONE");
-        public final static Property Id_two = new Property(9, String.class, "id_two", false, "ID_TWO");
-        public final static Property Id_three = new Property(10, String.class, "id_three", false, "ID_THREE");
-        public final static Property Id_four = new Property(11, String.class, "id_four", false, "ID_FOUR");
-        public final static Property Id_five = new Property(12, String.class, "id_five", false, "ID_FIVE");
-        public final static Property Id_six = new Property(13, String.class, "id_six", false, "ID_SIX");
-        public final static Property Id_seven = new Property(14, String.class, "id_seven", false, "ID_SEVEN");
-        public final static Property Id_eight = new Property(15, String.class, "id_eight", false, "ID_EIGHT");
-        public final static Property Id_nine = new Property(16, String.class, "id_nine", false, "ID_NINE");
-        public final static Property Id_ten = new Property(17, String.class, "id_ten", false, "ID_TEN");
+        public final static Property Use = new Property(7, int.class, "use", false, "USE");
+        public final static Property Base_type = new Property(8, String.class, "base_type", false, "BASE_TYPE");
+        public final static Property Id_one = new Property(9, String.class, "id_one", false, "ID_ONE");
+        public final static Property Id_two = new Property(10, String.class, "id_two", false, "ID_TWO");
+        public final static Property Id_three = new Property(11, String.class, "id_three", false, "ID_THREE");
+        public final static Property Id_four = new Property(12, String.class, "id_four", false, "ID_FOUR");
+        public final static Property Id_five = new Property(13, String.class, "id_five", false, "ID_FIVE");
+        public final static Property Id_six = new Property(14, String.class, "id_six", false, "ID_SIX");
+        public final static Property Id_seven = new Property(15, String.class, "id_seven", false, "ID_SEVEN");
+        public final static Property Id_eight = new Property(16, String.class, "id_eight", false, "ID_EIGHT");
+        public final static Property Id_nine = new Property(17, String.class, "id_nine", false, "ID_NINE");
+        public final static Property Id_ten = new Property(18, String.class, "id_ten", false, "ID_TEN");
     }
 
 
@@ -65,17 +66,18 @@ public class GoodsDao extends AbstractDao<Goods, Void> {
                 "\"CREATE_TIME\" INTEGER NOT NULL ," + // 4: create_time
                 "\"CREATER\" TEXT," + // 5: creater
                 "\"OWNER\" TEXT," + // 6: owner
-                "\"BASE_TYPE\" TEXT," + // 7: base_type
-                "\"ID_ONE\" TEXT," + // 8: id_one
-                "\"ID_TWO\" TEXT," + // 9: id_two
-                "\"ID_THREE\" TEXT," + // 10: id_three
-                "\"ID_FOUR\" TEXT," + // 11: id_four
-                "\"ID_FIVE\" TEXT," + // 12: id_five
-                "\"ID_SIX\" TEXT," + // 13: id_six
-                "\"ID_SEVEN\" TEXT," + // 14: id_seven
-                "\"ID_EIGHT\" TEXT," + // 15: id_eight
-                "\"ID_NINE\" TEXT," + // 16: id_nine
-                "\"ID_TEN\" TEXT);"); // 17: id_ten
+                "\"USE\" INTEGER NOT NULL ," + // 7: use
+                "\"BASE_TYPE\" TEXT," + // 8: base_type
+                "\"ID_ONE\" TEXT," + // 9: id_one
+                "\"ID_TWO\" TEXT," + // 10: id_two
+                "\"ID_THREE\" TEXT," + // 11: id_three
+                "\"ID_FOUR\" TEXT," + // 12: id_four
+                "\"ID_FIVE\" TEXT," + // 13: id_five
+                "\"ID_SIX\" TEXT," + // 14: id_six
+                "\"ID_SEVEN\" TEXT," + // 15: id_seven
+                "\"ID_EIGHT\" TEXT," + // 16: id_eight
+                "\"ID_NINE\" TEXT," + // 17: id_nine
+                "\"ID_TEN\" TEXT);"); // 18: id_ten
     }
 
     /** Drops the underlying database table. */
@@ -110,60 +112,61 @@ public class GoodsDao extends AbstractDao<Goods, Void> {
         if (owner != null) {
             stmt.bindString(7, owner);
         }
+        stmt.bindLong(8, entity.getUse());
  
         String base_type = entity.getBase_type();
         if (base_type != null) {
-            stmt.bindString(8, base_type);
+            stmt.bindString(9, base_type);
         }
  
         String id_one = entity.getId_one();
         if (id_one != null) {
-            stmt.bindString(9, id_one);
+            stmt.bindString(10, id_one);
         }
  
         String id_two = entity.getId_two();
         if (id_two != null) {
-            stmt.bindString(10, id_two);
+            stmt.bindString(11, id_two);
         }
  
         String id_three = entity.getId_three();
         if (id_three != null) {
-            stmt.bindString(11, id_three);
+            stmt.bindString(12, id_three);
         }
  
         String id_four = entity.getId_four();
         if (id_four != null) {
-            stmt.bindString(12, id_four);
+            stmt.bindString(13, id_four);
         }
  
         String id_five = entity.getId_five();
         if (id_five != null) {
-            stmt.bindString(13, id_five);
+            stmt.bindString(14, id_five);
         }
  
         String id_six = entity.getId_six();
         if (id_six != null) {
-            stmt.bindString(14, id_six);
+            stmt.bindString(15, id_six);
         }
  
         String id_seven = entity.getId_seven();
         if (id_seven != null) {
-            stmt.bindString(15, id_seven);
+            stmt.bindString(16, id_seven);
         }
  
         String id_eight = entity.getId_eight();
         if (id_eight != null) {
-            stmt.bindString(16, id_eight);
+            stmt.bindString(17, id_eight);
         }
  
         String id_nine = entity.getId_nine();
         if (id_nine != null) {
-            stmt.bindString(17, id_nine);
+            stmt.bindString(18, id_nine);
         }
  
         String id_ten = entity.getId_ten();
         if (id_ten != null) {
-            stmt.bindString(18, id_ten);
+            stmt.bindString(19, id_ten);
         }
     }
 
@@ -193,60 +196,61 @@ public class GoodsDao extends AbstractDao<Goods, Void> {
         if (owner != null) {
             stmt.bindString(7, owner);
         }
+        stmt.bindLong(8, entity.getUse());
  
         String base_type = entity.getBase_type();
         if (base_type != null) {
-            stmt.bindString(8, base_type);
+            stmt.bindString(9, base_type);
         }
  
         String id_one = entity.getId_one();
         if (id_one != null) {
-            stmt.bindString(9, id_one);
+            stmt.bindString(10, id_one);
         }
  
         String id_two = entity.getId_two();
         if (id_two != null) {
-            stmt.bindString(10, id_two);
+            stmt.bindString(11, id_two);
         }
  
         String id_three = entity.getId_three();
         if (id_three != null) {
-            stmt.bindString(11, id_three);
+            stmt.bindString(12, id_three);
         }
  
         String id_four = entity.getId_four();
         if (id_four != null) {
-            stmt.bindString(12, id_four);
+            stmt.bindString(13, id_four);
         }
  
         String id_five = entity.getId_five();
         if (id_five != null) {
-            stmt.bindString(13, id_five);
+            stmt.bindString(14, id_five);
         }
  
         String id_six = entity.getId_six();
         if (id_six != null) {
-            stmt.bindString(14, id_six);
+            stmt.bindString(15, id_six);
         }
  
         String id_seven = entity.getId_seven();
         if (id_seven != null) {
-            stmt.bindString(15, id_seven);
+            stmt.bindString(16, id_seven);
         }
  
         String id_eight = entity.getId_eight();
         if (id_eight != null) {
-            stmt.bindString(16, id_eight);
+            stmt.bindString(17, id_eight);
         }
  
         String id_nine = entity.getId_nine();
         if (id_nine != null) {
-            stmt.bindString(17, id_nine);
+            stmt.bindString(18, id_nine);
         }
  
         String id_ten = entity.getId_ten();
         if (id_ten != null) {
-            stmt.bindString(18, id_ten);
+            stmt.bindString(19, id_ten);
         }
     }
 
@@ -265,17 +269,18 @@ public class GoodsDao extends AbstractDao<Goods, Void> {
             cursor.getLong(offset + 4), // create_time
             cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // creater
             cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // owner
-            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // base_type
-            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // id_one
-            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // id_two
-            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // id_three
-            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // id_four
-            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12), // id_five
-            cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13), // id_six
-            cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14), // id_seven
-            cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15), // id_eight
-            cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16), // id_nine
-            cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17) // id_ten
+            cursor.getInt(offset + 7), // use
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // base_type
+            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // id_one
+            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // id_two
+            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // id_three
+            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12), // id_four
+            cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13), // id_five
+            cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14), // id_six
+            cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15), // id_seven
+            cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16), // id_eight
+            cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17), // id_nine
+            cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18) // id_ten
         );
         return entity;
     }
@@ -289,17 +294,18 @@ public class GoodsDao extends AbstractDao<Goods, Void> {
         entity.setCreate_time(cursor.getLong(offset + 4));
         entity.setCreater(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
         entity.setOwner(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
-        entity.setBase_type(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
-        entity.setId_one(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
-        entity.setId_two(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
-        entity.setId_three(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
-        entity.setId_four(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
-        entity.setId_five(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
-        entity.setId_six(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));
-        entity.setId_seven(cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14));
-        entity.setId_eight(cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15));
-        entity.setId_nine(cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16));
-        entity.setId_ten(cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17));
+        entity.setUse(cursor.getInt(offset + 7));
+        entity.setBase_type(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
+        entity.setId_one(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
+        entity.setId_two(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
+        entity.setId_three(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
+        entity.setId_four(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
+        entity.setId_five(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));
+        entity.setId_six(cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14));
+        entity.setId_seven(cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15));
+        entity.setId_eight(cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16));
+        entity.setId_nine(cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17));
+        entity.setId_ten(cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18));
      }
     
     @Override

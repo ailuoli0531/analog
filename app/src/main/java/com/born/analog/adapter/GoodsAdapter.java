@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.born.analog.R;
@@ -71,6 +72,7 @@ public class GoodsAdapter extends BaseAdapter {
             viewHolder.goods_name = view.findViewById(R.id.goods_name);
             viewHolder.goods_new = view.findViewById(R.id.goods_new);
             viewHolder.goods_layout = view.findViewById(R.id.goods_layout);
+            viewHolder.goods_use = view.findViewById(R.id.goods_use);
             view.setTag(viewHolder);
         }else{
             viewHolder = (ViewHolder) view.getTag();
@@ -88,6 +90,12 @@ public class GoodsAdapter extends BaseAdapter {
             }
             Goods goods = goodsList.get(i);
             viewHolder.goods_name.setText(goods.getName());
+            if(goods.getUse()==1){
+                viewHolder.goods_use.setVisibility(View.VISIBLE);
+                viewHolder.goods_use.setText("已穿戴");
+            }else {
+                viewHolder.goods_use.setVisibility(View.GONE);
+            }
         }
 
         viewHolder.goods_layout.setOnClickListener(new View.OnClickListener() {
@@ -114,7 +122,8 @@ public class GoodsAdapter extends BaseAdapter {
     private static class ViewHolder{
         TextView goods_name;
         TextView goods_new;
-        LinearLayout goods_layout;
+        TextView goods_use;
+        RelativeLayout goods_layout;
     }
 
 

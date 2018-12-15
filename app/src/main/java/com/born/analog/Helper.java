@@ -1,7 +1,9 @@
 package com.born.analog;
 
+import com.born.analog.manager.DbGoodsManager;
 import com.born.analog.module.Affix;
 import com.born.analog.module.AffixBean;
+import com.born.analog.module.Goods;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -197,4 +199,6 @@ public class Helper {
         }
         return total;
     }
+
+
 }

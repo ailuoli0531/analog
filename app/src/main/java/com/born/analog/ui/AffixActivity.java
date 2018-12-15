@@ -25,7 +25,7 @@ import java.util.List;
 /**
  * created by born on 2018/12/10.
  */
-public class AffixActivity extends BaseActivity {
+public class AffixActivity extends BaseActivity implements View.OnClickListener {
     public static String EXTRA_ID = "extra_id";
 
     /**
@@ -44,7 +44,8 @@ public class AffixActivity extends BaseActivity {
     private TextView textView;
     private List<AffixBean> affixBeanList;
     private AffixAdapter adapter;
-    private Button reset,crash,chou;
+    private Button reset,crash,chou,use;
+
     private Goods goods;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,7 +54,10 @@ public class AffixActivity extends BaseActivity {
         parseIntent();
         initView();
         initData();
+        initListener();
     }
+
+
 
     private void parseIntent() {
         goodsId = getIntent().getStringExtra(EXTRA_ID);
@@ -65,13 +69,13 @@ public class AffixActivity extends BaseActivity {
         reset = findViewById(R.id.reset);
         crash = findViewById(R.id.crash);
         chou = findViewById(R.id.chou);
+        use = findViewById(R.id.use);
 
-        crash.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                wash();
-            }
-        });
+    }
+
+    private void initListener() {
+        crash.setOnClickListener(this);
+        use.setOnClickListener(this);
     }
 
     private void initData() {
@@ -83,6 +87,9 @@ public class AffixActivity extends BaseActivity {
         }
 
         goods = DbGoodsManager.getInstance().getGoodsById(goodsId);
+
+        checkUse();
+
         affixBeanList.add(DbAffixManager.getInstance().getAffixById(goods.getId_one()));
         affixBeanList.add(DbAffixManager.getInstance().getAffixById(goods.getId_two()));
         affixBeanList.add(DbAffixManager.getInstance().getAffixById(goods.getId_three()));
@@ -105,6 +112,20 @@ public class AffixActivity extends BaseActivity {
     }
 
     /**
+     * 检查是否穿戴
+     */
+    private void checkUse() {
+        boolean isUse = goods.getUse()==1;
+        if(isUse){
+            use.setText("已穿戴");
+            use.setClickable(false);
+        }else{
+            use.setText("穿戴");
+            use.setClickable(true);
+        }
+    }
+
+    /**
      * 洗装备
      */
     private void wash(){
@@ -118,6 +139,23 @@ public class AffixActivity extends BaseActivity {
         affixBeanList.clear();
         affixBeanList.addAll(affixBeans);
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view.getId()==R.id.crash){
+            wash();
+        }else if(view.getId() == R.id.use){
+            useGoods();
+        }
+    }
+
+    /**
+     * 穿戴
+     */
+    private void useGoods() {
+        DbGoodsManager.getInstance().useGoods(goods);
+        checkUse();
     }
 
 

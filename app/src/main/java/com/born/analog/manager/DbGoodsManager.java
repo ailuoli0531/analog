@@ -57,6 +57,14 @@ public class DbGoodsManager {
     }
 
     /**
+     * 入库
+     * @param goodsList
+     */
+    public void insert(List<Goods> goodsList){
+         goodsDao.insertOrReplaceInTx(goodsList);
+    }
+
+    /**
      * 创建新装备，并入库
      * @param type
      * @return
@@ -171,5 +179,23 @@ public class DbGoodsManager {
         List<AffixBean> affixBeanList = DbAffixManager.getInstance().createAffixList(goods);
 
         DbAffixManager.getInstance().insert(affixBeanList);
+    }
+
+    /**
+     * 穿戴这条装备，同类型只能装备一条
+     * @param goods
+     * @return
+     */
+    public void useGoods(Goods goods){
+        goods.setUse(1);
+        WhereCondition wc = GoodsDao.Properties.Use.eq(1);
+        List<Goods> goodsList = goodsDao.queryBuilder().where(wc).list();
+        if(goodsList!=null && !goodsList.isEmpty()){
+            for(Goods g : goodsList){
+                g.setUse(0);
+            }
+        }
+        insert(goodsList);
+        insert(goods);
     }
 }
