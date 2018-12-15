@@ -15,6 +15,7 @@ public class Goods {
     public static Goods create(int type){
         Goods goods = new Goods();
         String goodsId = IdUtil.createId(type);
+        goods.setType(type);
         goods.setId(goodsId);
         goods.setId_one(IdUtil.createId(goodsId,"one"));
         goods.setId_two(IdUtil.createId(goodsId,"two"));
