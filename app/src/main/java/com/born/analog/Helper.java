@@ -225,8 +225,28 @@ public class Helper {
                 space+=affixBean.getSpace();
             }
         }
+        List<Goods> goodsList = QueryBasePro(name);
+        if(!goodsList.isEmpty()){
+            for(Goods goods : goodsList){
+                if(goods.getBase_type()==1){
+                    space+=goods.getBase_space();
+                }
+            }
+        }
         return space;
+    }
 
+
+    /**
+     * 查询基础属性
+     * @param name
+     * @return
+     */
+    public static List<Goods> QueryBasePro(String name){
+        WhereCondition w1 = GoodsDao.Properties.Base_name.eq(name);
+        WhereCondition w2 = GoodsDao.Properties.Use.eq(1);
+        List<Goods> goodsList = DaoHelper.getInstance().getSession().getGoodsDao().queryBuilder().where(w1,w2).list();
+        return goodsList;
     }
 
     private static List<AffixBean> querySql(String name){
@@ -260,9 +280,9 @@ public class Helper {
             affixBeanList.add(affixBean);
         }
         cursor.close();
-//        AffixBean bean = (AffixBean) query.unique();
-//        return bean;
 
         return affixBeanList;
     }
+
+
 }

@@ -166,6 +166,7 @@ public class AffixActivity extends BaseActivity implements View.OnClickListener 
             sb.append(" ");
             sb.append(space);
 
+            goods.setBase_space(space);
         }else if(type==0){
             //最大最小
             int min = goods.getBase_minNumber()+(affixBeanList.size()-3)*100;
@@ -174,7 +175,11 @@ public class AffixActivity extends BaseActivity implements View.OnClickListener 
             sb.append(min);
             sb.append("-");
             sb.append(max);
+
+            goods.setBase_minNumber(min);
+            goods.setBase_maxNumber(max);
         }
+        DbGoodsManager.getInstance().insert(goods);
         text_base.setText(sb);
     }
 

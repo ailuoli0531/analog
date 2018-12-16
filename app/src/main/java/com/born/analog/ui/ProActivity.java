@@ -52,6 +52,9 @@ public class ProActivity extends BaseActivity {
         mj.setSpace(String.valueOf(Helper.QueryPro(mj.getName())));
         list.add(mj);
 
+        Pro gj = new Pro();
+        gj.setName("攻击力");
+
         adapter.notify(list);
     }
 

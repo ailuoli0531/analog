@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.util.Log;
-
 import org.greenrobot.greendao.AbstractDaoMaster;
 import org.greenrobot.greendao.database.Database;
 import org.greenrobot.greendao.database.DatabaseOpenHelper;
@@ -24,12 +23,14 @@ public class DaoMaster extends AbstractDaoMaster {
     public static void createAllTables(Database db, boolean ifNotExists) {
         GoodsDao.createTable(db, ifNotExists);
         AffixBeanDao.createTable(db, ifNotExists);
+        PannelDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
     public static void dropAllTables(Database db, boolean ifExists) {
         GoodsDao.dropTable(db, ifExists);
         AffixBeanDao.dropTable(db, ifExists);
+        PannelDao.dropTable(db, ifExists);
     }
 
     /**
@@ -50,6 +51,7 @@ public class DaoMaster extends AbstractDaoMaster {
         super(db, SCHEMA_VERSION);
         registerDaoClass(GoodsDao.class);
         registerDaoClass(AffixBeanDao.class);
+        registerDaoClass(PannelDao.class);
     }
 
     public DaoSession newSession() {

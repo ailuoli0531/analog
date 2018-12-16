@@ -2,6 +2,7 @@ package com.born.analog.dao;
 
 import com.born.analog.module.AffixBean;
 import com.born.analog.module.Goods;
+import com.born.analog.module.Pannel;
 
 import org.greenrobot.greendao.AbstractDao;
 import org.greenrobot.greendao.AbstractDaoSession;
@@ -22,9 +23,11 @@ public class DaoSession extends AbstractDaoSession {
 
     private final DaoConfig goodsDaoConfig;
     private final DaoConfig affixBeanDaoConfig;
+    private final DaoConfig pannelDaoConfig;
 
     private final GoodsDao goodsDao;
     private final AffixBeanDao affixBeanDao;
+    private final PannelDao pannelDao;
 
     public DaoSession(Database db, IdentityScopeType type, Map<Class<? extends AbstractDao<?, ?>>, DaoConfig>
             daoConfigMap) {
@@ -36,16 +39,22 @@ public class DaoSession extends AbstractDaoSession {
         affixBeanDaoConfig = daoConfigMap.get(AffixBeanDao.class).clone();
         affixBeanDaoConfig.initIdentityScope(type);
 
+        pannelDaoConfig = daoConfigMap.get(PannelDao.class).clone();
+        pannelDaoConfig.initIdentityScope(type);
+
         goodsDao = new GoodsDao(goodsDaoConfig, this);
         affixBeanDao = new AffixBeanDao(affixBeanDaoConfig, this);
+        pannelDao = new PannelDao(pannelDaoConfig, this);
 
         registerDao(Goods.class, goodsDao);
         registerDao(AffixBean.class, affixBeanDao);
+        registerDao(Pannel.class, pannelDao);
     }
     
     public void clear() {
         goodsDaoConfig.clearIdentityScope();
         affixBeanDaoConfig.clearIdentityScope();
+        pannelDaoConfig.clearIdentityScope();
     }
 
     public GoodsDao getGoodsDao() {
@@ -54,6 +63,10 @@ public class DaoSession extends AbstractDaoSession {
 
     public AffixBeanDao getAffixBeanDao() {
         return affixBeanDao;
+    }
+
+    public PannelDao getPannelDao() {
+        return pannelDao;
     }
 
 }
