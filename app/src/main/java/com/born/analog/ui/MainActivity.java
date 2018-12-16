@@ -69,7 +69,7 @@ public class MainActivity extends BaseActivity {
 
         SelectBean necklace = new SelectBean();
         necklace.setName("项链");
-        necklace.setType(3);
+        necklace.setType(4);
         beanList.add(necklace);
 
         gridView.setAdapter(new GridAdapter());

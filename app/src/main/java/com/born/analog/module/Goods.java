@@ -77,11 +77,53 @@ public class Goods {
     public void setUse(int use) {
         this.use = use;
     }
-    public String getBase_type() {
+    public int getBase_type() {
         return this.base_type;
     }
-    public void setBase_type(String base_type) {
+    public void setBase_type(int base_type) {
         this.base_type = base_type;
+    }
+    public String getBase_name() {
+        return this.base_name;
+    }
+    public void setBase_name(String base_name) {
+        this.base_name = base_name;
+    }
+    public int getBase_minNumber() {
+        return this.base_minNumber;
+    }
+    public void setBase_minNumber(int base_minNumber) {
+        this.base_minNumber = base_minNumber;
+    }
+    public int getBase_maxNumber() {
+        return this.base_maxNumber;
+    }
+    public void setBase_maxNumber(int base_maxNumber) {
+        this.base_maxNumber = base_maxNumber;
+    }
+    public int getBase_number() {
+        return this.base_number;
+    }
+    public void setBase_number(int base_number) {
+        this.base_number = base_number;
+    }
+    public int getBase_space() {
+        return this.base_space;
+    }
+    public void setBase_space(int base_space) {
+        this.base_space = base_space;
+    }
+    public int getBase_minSpace() {
+        return this.base_minSpace;
+    }
+    public void setBase_minSpace(int base_minSpace) {
+        this.base_minSpace = base_minSpace;
+    }
+    public int getBase_maxSpace() {
+        return this.base_maxSpace;
+    }
+    public void setBase_maxSpace(int base_maxSpace) {
+        this.base_maxSpace = base_maxSpace;
     }
     public String getId_1() {
         return this.id_1;
@@ -161,8 +203,24 @@ public class Goods {
     private String owner;
     //是否正在穿戴 0未穿戴 1穿戴，同类型只能穿戴一条
     private int use;
+
+    /**固定属性描述
+     * 0 最大最小
+     * 1 固定值
+     * 2 固定百分比
+     * 3 百分比最大最小
+     */
     //基础属性类型
-    private String base_type;
+    private int base_type;
+    //基础属性描述
+    private String base_name;
+    //基础属性值
+    private int base_minNumber;
+    private int base_maxNumber;
+    private int base_number;
+    private int base_space;
+    private int base_minSpace;
+    private int base_maxSpace;
     //词条id
     private String id_1;
     private String id_2;
@@ -174,11 +232,13 @@ public class Goods {
     private String id_8;
     private String id_9;
     private String id_10;
-    @Generated(hash = 111393729)
+    @Generated(hash = 1356655263)
     public Goods(String id, int type, String name, int length, long create_time,
-            String creater, String owner, int use, String base_type, String id_1,
-            String id_2, String id_3, String id_4, String id_5, String id_6,
-            String id_7, String id_8, String id_9, String id_10) {
+            String creater, String owner, int use, int base_type, String base_name,
+            int base_minNumber, int base_maxNumber, int base_number, int base_space,
+            int base_minSpace, int base_maxSpace, String id_1, String id_2,
+            String id_3, String id_4, String id_5, String id_6, String id_7,
+            String id_8, String id_9, String id_10) {
         this.id = id;
         this.type = type;
         this.name = name;
@@ -188,6 +248,13 @@ public class Goods {
         this.owner = owner;
         this.use = use;
         this.base_type = base_type;
+        this.base_name = base_name;
+        this.base_minNumber = base_minNumber;
+        this.base_maxNumber = base_maxNumber;
+        this.base_number = base_number;
+        this.base_space = base_space;
+        this.base_minSpace = base_minSpace;
+        this.base_maxSpace = base_maxSpace;
         this.id_1 = id_1;
         this.id_2 = id_2;
         this.id_3 = id_3;
@@ -202,5 +269,6 @@ public class Goods {
     @Generated(hash = 1770709345)
     public Goods() {
     }
+  
    
 }

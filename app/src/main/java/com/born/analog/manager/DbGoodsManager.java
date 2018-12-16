@@ -92,6 +92,10 @@ public class DbGoodsManager {
     public void createWeapon(Goods goods){
         goods.setName("四象灭魔刀 + "+getGoodsByType(goods.getType()).size());
         goods.setLength(Helper.getLength());
+        goods.setBase_type(0);
+        goods.setBase_name("攻击力");
+        goods.setBase_minNumber(1000);
+        goods.setBase_maxNumber(2000);
         AffixBean bean1 = Helper.createAffixBean(goods.getId_1(),1,Helper.getAffixByName("力量"));
         AffixBean bean2 = Helper.createAffixBean(goods.getId_2(),2,Helper.getAffixByName("攻速"));
         AffixBean bean3 = Helper.createAffixBean(goods.getId_3(),3,Helper.getAffixByName("最大攻击力提升"));
@@ -111,6 +115,9 @@ public class DbGoodsManager {
     public void createArmour(Goods goods){
         goods.setName("四象护甲 + "+getGoodsByType(goods.getType()).size());
         goods.setLength(Helper.getLength());
+        goods.setBase_type(1);
+        goods.setBase_name("防御");
+        goods.setBase_number(1000);
         AffixBean bean1 = Helper.createAffixBean(goods.getId_1(),1,Helper.getAffixByName("气血"));
         AffixBean bean2 = Helper.createAffixBean(goods.getId_2(),2,Helper.getAffixByName("暴击伤害减少"));
         AffixBean bean3 = Helper.createAffixBean(goods.getId_3(),3,Helper.getAffixByName("防御"));
@@ -130,6 +137,9 @@ public class DbGoodsManager {
     public void createHand(Goods goods){
         goods.setName("四象护手 + "+getGoodsByType(goods.getType()).size());
         goods.setLength(Helper.getLength());
+        goods.setBase_type(1);
+        goods.setBase_name("气血");
+        goods.setBase_number(1000);
         AffixBean bean1 = Helper.createAffixBean(goods.getId_1(),1,Helper.getAffixByName("敏捷"));
         AffixBean bean2 = Helper.createAffixBean(goods.getId_2(),2,Helper.getAffixByName("力量"));
         AffixBean bean3 = Helper.createAffixBean(goods.getId_3(),3,Helper.getAffixByName("精准"));
@@ -149,6 +159,9 @@ public class DbGoodsManager {
     public void createShoes(Goods goods){
         goods.setName("四象足具 + "+getGoodsByType(goods.getType()).size());
         goods.setLength(Helper.getLength());
+        goods.setBase_type(1);
+        goods.setBase_name("防御");
+        goods.setBase_number(500);
         AffixBean bean1 = Helper.createAffixBean(goods.getId_1(),1,Helper.getAffixByName("敏捷"));
         AffixBean bean2 = Helper.createAffixBean(goods.getId_2(),2,Helper.getAffixByName("气血"));
         AffixBean bean3 = Helper.createAffixBean(goods.getId_3(),3,Helper.getAffixByName("闪避"));
@@ -167,6 +180,9 @@ public class DbGoodsManager {
      */
     public void createNecklace(Goods goods){
         goods.setName("四象项链 + "+getGoodsByType(goods.getType()).size());
+        goods.setBase_type(1);
+        goods.setBase_name("暴击伤害增加");
+        goods.setBase_number(500);
         goods.setLength(Helper.getLength());
         AffixBean bean1 = Helper.createAffixBean(goods.getId_1(),1,Helper.getAffixByName("敏捷"));
         AffixBean bean2 = Helper.createAffixBean(goods.getId_2(),2,Helper.getAffixByName("力量"));

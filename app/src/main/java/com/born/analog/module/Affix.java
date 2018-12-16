@@ -8,8 +8,8 @@ public class Affix {
     private String name;
     private int space;
     /**
-     * 0 默认最大最小
-     * 1 ?
+     * 0 最大最小
+     * 1 固定值
      * 2 固定百分比
      * 3 百分比最大最小
      */

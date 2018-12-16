@@ -40,7 +40,8 @@ public class AffixActivity extends BaseActivity implements View.OnClickListener 
 
     private String goodsId;
     private ListView listView;
-    private TextView textView;
+    private TextView text_name;
+    private TextView text_base;
     private List<AffixBean> affixBeanList;
     private AffixAdapter adapter;
     private Button reset,crash,chou,use;
@@ -64,7 +65,8 @@ public class AffixActivity extends BaseActivity implements View.OnClickListener 
 
     private void initView() {
         listView = findViewById(R.id.listview);
-        textView = findViewById(R.id.name);
+        text_name = findViewById(R.id.name);
+        text_base = findViewById(R.id.base);
         reset = findViewById(R.id.reset);
         crash = findViewById(R.id.crash);
         chou = findViewById(R.id.chou);
@@ -107,6 +109,7 @@ public class AffixActivity extends BaseActivity implements View.OnClickListener 
             }
         }
 
+        refreshHead();
         adapter.notifyDataSetChanged();
     }
 
@@ -137,7 +140,42 @@ public class AffixActivity extends BaseActivity implements View.OnClickListener 
 
         affixBeanList.clear();
         affixBeanList.addAll(affixBeans);
+
+        refreshHead();
         adapter.notifyDataSetChanged();
+    }
+
+    /**
+     * 刷新头部信息 基础 姓名
+     */
+    private void refreshHead(){
+        text_name.setText(goods.getName());
+        if(affixBeanList.size()>5){
+            text_name.setTextColor(getResources().getColor(R.color.purple));
+            text_base.setTextColor(getResources().getColor(R.color.purple));
+        }else{
+            text_name.setTextColor(getResources().getColor(R.color.pink));
+            text_base.setTextColor(getResources().getColor(R.color.pink));
+        }
+        //每增加一个词条，基础+100
+        int type = goods.getBase_type();
+        StringBuilder sb = new StringBuilder(goods.getBase_name());
+        if(type==1){
+            //固定值
+            int space = goods.getBase_number()+(affixBeanList.size()-3)*100;
+            sb.append(" ");
+            sb.append(space);
+
+        }else if(type==0){
+            //最大最小
+            int min = goods.getBase_minNumber()+(affixBeanList.size()-3)*100;
+            int max = goods.getBase_maxNumber()+(affixBeanList.size()-3)*100;
+            sb.append(" ");
+            sb.append(min);
+            sb.append("-");
+            sb.append(max);
+        }
+        text_base.setText(sb);
     }
 
     @Override
@@ -192,7 +230,7 @@ public class AffixActivity extends BaseActivity implements View.OnClickListener 
             name.setText(affixBean.getName());
             describe.setText(String.valueOf(affixBean.getSpace()));
 
-            if(affixBeanList.size()>4){
+            if(affixBeanList.size()>5){
                 name.setTextColor(purple);
                 describe.setTextColor(purple);
             }else{
