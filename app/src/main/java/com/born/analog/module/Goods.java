@@ -17,16 +17,16 @@ public class Goods {
         String goodsId = IdUtil.createId(type);
         goods.setType(type);
         goods.setId(goodsId);
-        goods.setId_1(IdUtil.createId(goodsId,"one"));
-        goods.setId_2(IdUtil.createId(goodsId,"two"));
-        goods.setId_3(IdUtil.createId(goodsId,"three"));
-        goods.setId_4(IdUtil.createId(goodsId,"four"));
-        goods.setId_5(IdUtil.createId(goodsId,"five"));
-        goods.setId_6(IdUtil.createId(goodsId,"six"));
-        goods.setId_7(IdUtil.createId(goodsId,"seven"));
-        goods.setId_8(IdUtil.createId(goodsId,"eight"));
-        goods.setId_9(IdUtil.createId(goodsId,"nine"));
-        goods.setId_10(IdUtil.createId(goodsId,"ten"));
+        goods.setId_1(IdUtil.createId(goodsId,1));
+        goods.setId_2(IdUtil.createId(goodsId,2));
+        goods.setId_3(IdUtil.createId(goodsId,3));
+        goods.setId_4(IdUtil.createId(goodsId,4));
+        goods.setId_5(IdUtil.createId(goodsId,5));
+        goods.setId_6(IdUtil.createId(goodsId,6));
+        goods.setId_7(IdUtil.createId(goodsId,7));
+        goods.setId_8(IdUtil.createId(goodsId,8));
+        goods.setId_9(IdUtil.createId(goodsId,9));
+        goods.setId_10(IdUtil.createId(goodsId,10));
         return goods;
     }
     public String getId() {

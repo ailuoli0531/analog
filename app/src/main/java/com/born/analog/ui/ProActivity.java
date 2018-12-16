@@ -40,8 +40,17 @@ public class ProActivity extends BaseActivity {
         Pro hp = new Pro();
         hp.setName("气血");
         hp.setSpace(String.valueOf(Helper.QueryPro(hp.getName())));
-
         list.add(hp);
+
+        Pro fy = new Pro();
+        fy.setName("防御");
+        fy.setSpace(String.valueOf(Helper.QueryPro(fy.getName())));
+        list.add(fy);
+
+        Pro mj = new Pro();
+        mj.setName("敏捷");
+        mj.setSpace(String.valueOf(Helper.QueryPro(mj.getName())));
+        list.add(mj);
 
         adapter.notify(list);
     }

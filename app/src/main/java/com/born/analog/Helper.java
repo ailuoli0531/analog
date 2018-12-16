@@ -96,8 +96,10 @@ public class Helper {
         int curPro = getRandom(1, totalPro);
         //获取当前词条
         Affix affix = getAffixByNum(affixList, curPro);
+        //当前要生成的词条的位置
+        int position = affixBeanList.size()+1;
         //生成装备词缀
-        return createAffixBean(id,affix);
+        return createAffixBean(id,position,affix);
     }
 
     /**
@@ -128,11 +130,12 @@ public class Helper {
      * @param affix
      * @return
      */
-    public static AffixBean createAffixBean(String id,Affix affix) {
+    public static AffixBean createAffixBean(String id,int position,Affix affix) {
         AffixBean affixBean = new AffixBean();
         affixBean.setId(id);
         affixBean.setName(affix.getName());
         affixBean.setType(affix.getType());
+        affixBean.setPosition(position);
         int type = affix.getType();
         if (type == 0 || type == 3) {
             //大小值或百分比最大最小
@@ -216,50 +219,50 @@ public class Helper {
      */
     public static int QueryPro(String name){
         int space = 0;
-        WhereCondition wc1 = GoodsDao.Properties.Use.eq(1);
-        List<Goods> goodsList = DaoHelper.getInstance().getSession().getGoodsDao().queryBuilder()
-                .where(wc1)
-                .list();
-        if(!goodsList.isEmpty()){
-            for(Goods goods : goodsList){
-                for(int i=1;i<=goods.getLength();i++){
-                    AffixBean bean = querySql(goods,i,name);
-                    if(bean!=null){
-                        space = bean.getSpace();
-                    }
-                }
+        List<AffixBean> affixBeanList = querySql(name);
+        if(affixBeanList!=null && !affixBeanList.isEmpty()){
+            for(AffixBean affixBean : affixBeanList){
+                space+=affixBean.getSpace();
             }
         }
-        WhereCondition wc2 = AffixBeanDao.Properties.Name.eq(name);
         return space;
 
     }
 
-    private static AffixBean querySql(Goods goods,int position,String name){
+    private static List<AffixBean> querySql(String name){
         String sql = "SELECT * FROM " + AffixBeanDao.TABLENAME + " INNER JOIN " + GoodsDao.TABLENAME
                     + " ON "
-                    + GoodsDao.TABLENAME+"." + "ID_"+position + " = "
-                    + AffixBeanDao.TABLENAME+"."+AffixBeanDao.Properties.Id.columnName
-                    + " AND "
                     + GoodsDao.TABLENAME +"." + GoodsDao.Properties.Use.columnName + " = 1"
+                    + " AND "
+                    + AffixBeanDao.TABLENAME+"."+AffixBeanDao.Properties.Id.columnName + " LIKE '%'|| "
+
+                    + GoodsDao.TABLENAME+"." + GoodsDao.Properties.Id.columnName
+                    + " ||'%' "
+                    + " AND "
+                    + AffixBeanDao.TABLENAME+"."+AffixBeanDao.Properties.Position.columnName +" <="
+                    + GoodsDao.TABLENAME+"."+GoodsDao.Properties.Length.columnName
                     + " AND "
                     + AffixBeanDao.TABLENAME+"."+AffixBeanDao.Properties.Name.columnName + " = '" + name + "'";
 
-//        String sql = "SELECT * FROM " + AffixBeanDao.TABLENAME
-//                + " WHERE "
-//                + AffixBeanDao.Properties.Name.columnName + " = '" + name + "'";
-
-//        Query query = DaoHelper.getInstance().getSession().
-//                getAffixBeanDao().queryRawCreate(sql);
 
         Cursor cursor = DaoHelper.getInstance().getSession().getDatabase().rawQuery(sql,null);
 
+        List<AffixBean> affixBeanList = new ArrayList<>();
+
         while (cursor.moveToNext()){
-            Log.e("GreenDao",cursor.getString(cursor.getColumnIndex(AffixBeanDao.Properties.Space.columnName)));
+            AffixBean affixBean = new AffixBean();
+            affixBean.setTag(cursor.getString(cursor.getColumnIndex(AffixBeanDao.Properties.Tag.columnName)));
+            affixBean.setId(cursor.getString(cursor.getColumnIndex(AffixBeanDao.Properties.Id.columnName)));
+            affixBean.setName(cursor.getString(cursor.getColumnIndex(AffixBeanDao.Properties.Name.columnName)));
+            affixBean.setType(cursor.getInt(cursor.getColumnIndex(AffixBeanDao.Properties.Type.columnName)));
+            affixBean.setSpace(cursor.getInt(cursor.getColumnIndex(AffixBeanDao.Properties.Space.columnName)));
+            affixBean.setPosition(cursor.getInt(cursor.getColumnIndex(AffixBeanDao.Properties.Position.columnName)));
+            affixBeanList.add(affixBean);
         }
+        cursor.close();
 //        AffixBean bean = (AffixBean) query.unique();
 //        return bean;
 
-        return null;
+        return affixBeanList;
     }
 }

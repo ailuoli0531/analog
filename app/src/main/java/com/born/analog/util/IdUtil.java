@@ -26,9 +26,10 @@ public class IdUtil {
      * @param location
      * @return
      */
-    public static String createId(String goodsId,String location){
-        StringBuilder sb = new StringBuilder(location);
-        sb.append(goodsId);
+    public static String createId(String goodsId,int location){
+        StringBuilder sb = new StringBuilder(goodsId);
+        sb.append("_");
+        sb.append(location);
         return sb.toString();
     }
 }

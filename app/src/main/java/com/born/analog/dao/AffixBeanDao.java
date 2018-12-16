@@ -30,6 +30,7 @@ public class AffixBeanDao extends AbstractDao<AffixBean, Void> {
         public final static Property Name = new Property(2, String.class, "name", false, "NAME");
         public final static Property Type = new Property(3, int.class, "type", false, "TYPE");
         public final static Property Space = new Property(4, int.class, "space", false, "SPACE");
+        public final static Property Position = new Property(5, int.class, "position", false, "POSITION");
     }
 
 
@@ -49,7 +50,8 @@ public class AffixBeanDao extends AbstractDao<AffixBean, Void> {
                 "\"TAG\" TEXT," + // 1: tag
                 "\"NAME\" TEXT," + // 2: name
                 "\"TYPE\" INTEGER NOT NULL ," + // 3: type
-                "\"SPACE\" INTEGER NOT NULL );"); // 4: space
+                "\"SPACE\" INTEGER NOT NULL ," + // 4: space
+                "\"POSITION\" INTEGER NOT NULL );"); // 5: position
     }
 
     /** Drops the underlying database table. */
@@ -78,6 +80,7 @@ public class AffixBeanDao extends AbstractDao<AffixBean, Void> {
         }
         stmt.bindLong(4, entity.getType());
         stmt.bindLong(5, entity.getSpace());
+        stmt.bindLong(6, entity.getPosition());
     }
 
     @Override
@@ -100,6 +103,7 @@ public class AffixBeanDao extends AbstractDao<AffixBean, Void> {
         }
         stmt.bindLong(4, entity.getType());
         stmt.bindLong(5, entity.getSpace());
+        stmt.bindLong(6, entity.getPosition());
     }
 
     @Override
@@ -114,7 +118,8 @@ public class AffixBeanDao extends AbstractDao<AffixBean, Void> {
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // tag
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // name
             cursor.getInt(offset + 3), // type
-            cursor.getInt(offset + 4) // space
+            cursor.getInt(offset + 4), // space
+            cursor.getInt(offset + 5) // position
         );
         return entity;
     }
@@ -126,6 +131,7 @@ public class AffixBeanDao extends AbstractDao<AffixBean, Void> {
         entity.setName(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
         entity.setType(cursor.getInt(offset + 3));
         entity.setSpace(cursor.getInt(offset + 4));
+        entity.setPosition(cursor.getInt(offset + 5));
      }
     
     @Override
