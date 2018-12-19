@@ -108,6 +108,8 @@ public class DbGoodsManager {
         DbAffixManager.getInstance().insert(affixBeanList);
     }
 
+
+
     /**
      * 护甲
      * @param goods

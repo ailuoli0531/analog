@@ -160,12 +160,14 @@ public class AffixActivity extends BaseActivity implements View.OnClickListener 
         //每增加一个词条，基础+100
         int type = goods.getBase_type();
         StringBuilder sb = new StringBuilder(goods.getBase_name());
+        //判断包含几个神赐属性
+        int sc = 0;
+
         if(type==1){
             //固定值
             int space = goods.getBase_number()+(affixBeanList.size()-3)*100;
             sb.append(" ");
             sb.append(space);
-
             goods.setBase_space(space);
         }else if(type==0){
             //最大最小

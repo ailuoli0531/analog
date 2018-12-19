@@ -285,4 +285,30 @@ public class Helper {
     }
 
 
+    /**
+     * 判断包含几个神赐
+     * @param goods
+     * @return
+     */
+    public int includeSC(Goods goods){
+        String sql =  "SELECT * FROM " + AffixBeanDao.TABLENAME + " INNER JOIN " + GoodsDao.TABLENAME
+                + " ON "
+                + GoodsDao.TABLENAME +"." + GoodsDao.Properties.Id.columnName + " = " + goods.getId()
+                + " AND "
+                + AffixBeanDao.TABLENAME+"."+AffixBeanDao.Properties.Id.columnName + " LIKE '%'|| "
+
+                + GoodsDao.TABLENAME+"." + GoodsDao.Properties.Id.columnName
+                + " ||'%' "
+                + " AND "
+                + AffixBeanDao.TABLENAME+"."+AffixBeanDao.Properties.Position.columnName +" <="
+                + GoodsDao.TABLENAME+"."+GoodsDao.Properties.Length.columnName
+                + " AND "
+                + AffixBeanDao.TABLENAME+"."+AffixBeanDao.Properties.Name.columnName + " = '" + "神赐" + "'";
+
+        Cursor cursor = DaoHelper.getInstance().getSession().getDatabase().rawQuery(sql,null);
+        int count = cursor==null?0:cursor.getCount();
+        cursor.close();
+        return count;
+    }
+
 }
