@@ -161,25 +161,24 @@ public class AffixActivity extends BaseActivity implements View.OnClickListener 
         int type = goods.getBase_type();
         StringBuilder sb = new StringBuilder(goods.getBase_name());
         //判断包含几个神赐属性
-        int sc = 0;
-
+        int sc = Helper.includeSC(goods);
         if(type==1){
             //固定值
-            int space = goods.getBase_number()+(affixBeanList.size()-3)*100;
+            int space = goods.getBase_number()+(affixBeanList.size()-3)*100+goods.getBase_number()/2*sc;
             sb.append(" ");
             sb.append(space);
             goods.setBase_space(space);
         }else if(type==0){
             //最大最小
-            int min = goods.getBase_minNumber()+(affixBeanList.size()-3)*100;
-            int max = goods.getBase_maxNumber()+(affixBeanList.size()-3)*100;
+            int min = goods.getBase_minNumber()+(affixBeanList.size()-3)*100 + goods.getBase_minNumber()/2*sc;
+            int max = goods.getBase_maxNumber()+(affixBeanList.size()-3)*100 + goods.getBase_maxNumber()/2*sc;
             sb.append(" ");
             sb.append(min);
             sb.append("-");
             sb.append(max);
 
-            goods.setBase_minNumber(min);
-            goods.setBase_maxNumber(max);
+            goods.setBase_minSpace(min);
+            goods.setBase_maxSpace(max);
         }
         DbGoodsManager.getInstance().insert(goods);
         text_base.setText(sb);

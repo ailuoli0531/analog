@@ -290,7 +290,7 @@ public class Helper {
      * @param goods
      * @return
      */
-    public int includeSC(Goods goods){
+    public static int includeSC(Goods goods){
         String sql =  "SELECT * FROM " + AffixBeanDao.TABLENAME + " INNER JOIN " + GoodsDao.TABLENAME
                 + " ON "
                 + GoodsDao.TABLENAME +"." + GoodsDao.Properties.Id.columnName + " = " + goods.getId()
