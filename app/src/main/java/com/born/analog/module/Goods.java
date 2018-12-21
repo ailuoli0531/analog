@@ -143,7 +143,7 @@ public class Goods {
      */
     //基础属性类型
     private int base_type;
-    //基础属性描述
+    //基础属性 TAG
     private String base_name;
     //基础属性值
     private int base_minNumber;

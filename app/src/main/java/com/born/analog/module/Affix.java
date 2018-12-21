@@ -4,15 +4,19 @@ package com.born.analog.module;
  * created by born on 2018/12/10.
  */
 public class Affix {
+
+    //单值
+    public static final int TYPE_NORMAL = 0;
+    //百分值
+    public static final int TYPE_PERCENT = 1;
+    //固定描述
+    public static final int TYPE_FINAL = 2;
+    //百分比最大最小
+    public static final int TYPE_MIN_MAX = 3;
+
     private long id;
     private String name;
     private int space;
-    /**
-     * 0 最大最小
-     * 1 固定值
-     * 2 固定百分比
-     * 3 百分比最大最小
-     */
     private int type;
     private int minSpace;
     private int maxSpace;
@@ -24,6 +28,14 @@ public class Affix {
      * 最多出现次数
      */
     private int maxPro;
+    /**
+     * 属性识别码
+     */
+    private String Tag;
+    /**
+     * 属性描述
+     */
+    private String describe;
 
     public String getName() {
         return name;
@@ -81,4 +93,19 @@ public class Affix {
         this.maxPro = maxPro;
     }
 
+    public String getTag() {
+        return Tag;
+    }
+
+    public void setTag(String tag) {
+        Tag = tag;
+    }
+
+    public String getDescribe() {
+        return describe;
+    }
+
+    public void setDescribe(String describe) {
+        this.describe = describe;
+    }
 }

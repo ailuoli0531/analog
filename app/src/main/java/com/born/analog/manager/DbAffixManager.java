@@ -65,8 +65,8 @@ public class DbAffixManager {
         for (int i = 1; i <= 3; i++) {
             String affixId = Helper.buildAffixId(goods.getId(),i);
             AffixBean affixBean = DbAffixManager.getInstance().getAffixById(affixId);
-            if (affixBean.getType() == 0 || affixBean.getType() == 3) {
-                Affix affix = Helper.getAffixByName(affixBean.getName());
+            if (affixBean.getType() == Affix.TYPE_NORMAL || affixBean.getType() == Affix.TYPE_PERCENT) {
+                Affix affix = Helper.getAffixByTAG(affixBean.getTag());
                 affixBean.setSpace(Helper.getRandom(affix.getMinSpace(), affix.getMaxSpace()));
                 affixBeanList.add(affixBean);
             } else {

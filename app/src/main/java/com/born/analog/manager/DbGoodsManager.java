@@ -1,8 +1,10 @@
 package com.born.analog.manager;
 
+import com.born.analog.AnaLogTag;
 import com.born.analog.Helper;
 import com.born.analog.dao.DaoHelper;
 import com.born.analog.dao.GoodsDao;
+import com.born.analog.module.Affix;
 import com.born.analog.module.AffixBean;
 import com.born.analog.module.Goods;
 
@@ -92,13 +94,13 @@ public class DbGoodsManager {
     public void createWeapon(Goods goods){
         goods.setName("四象灭魔刀 + "+getGoodsByType(goods.getType()).size());
         goods.setLength(Helper.getLength());
-        goods.setBase_type(0);
-        goods.setBase_name("攻击力");
+        goods.setBase_type(Affix.TYPE_MIN_MAX);
+        goods.setBase_name(AnaLogTag.MIN_MAX_A);
         goods.setBase_minNumber(1000);
         goods.setBase_maxNumber(2000);
-        AffixBean bean1 = Helper.createAffixBean(goods.getId(),1,Helper.getAffixByName("力量"));
-        AffixBean bean2 = Helper.createAffixBean(goods.getId(),2,Helper.getAffixByName("攻速"));
-        AffixBean bean3 = Helper.createAffixBean(goods.getId(),3,Helper.getAffixByName("最大攻击力提升"));
+        AffixBean bean1 = Helper.createAffixBean(goods.getId(),1,Helper.getAffixByTAG(AnaLogTag.POWER));
+        AffixBean bean2 = Helper.createAffixBean(goods.getId(),2,Helper.getAffixByTAG(AnaLogTag.SPEED));
+        AffixBean bean3 = Helper.createAffixBean(goods.getId(),3,Helper.getAffixByTAG(AnaLogTag.MAX_A_P));
         DbAffixManager.getInstance().insert(bean1);
         DbAffixManager.getInstance().insert(bean2);
         DbAffixManager.getInstance().insert(bean3);
@@ -117,12 +119,12 @@ public class DbGoodsManager {
     public void createArmour(Goods goods){
         goods.setName("四象护甲 + "+getGoodsByType(goods.getType()).size());
         goods.setLength(Helper.getLength());
-        goods.setBase_type(1);
-        goods.setBase_name("防御");
+        goods.setBase_type(Affix.TYPE_NORMAL);
+        goods.setBase_name(AnaLogTag.DEF);
         goods.setBase_number(1000);
-        AffixBean bean1 = Helper.createAffixBean(goods.getId(),1,Helper.getAffixByName("气血"));
-        AffixBean bean2 = Helper.createAffixBean(goods.getId(),2,Helper.getAffixByName("暴击伤害减少"));
-        AffixBean bean3 = Helper.createAffixBean(goods.getId(),3,Helper.getAffixByName("防御"));
+        AffixBean bean1 = Helper.createAffixBean(goods.getId(),1,Helper.getAffixByTAG(AnaLogTag.BLOOD));
+        AffixBean bean2 = Helper.createAffixBean(goods.getId(),2,Helper.getAffixByTAG(AnaLogTag.CRIT_T));
+        AffixBean bean3 = Helper.createAffixBean(goods.getId(),3,Helper.getAffixByTAG(AnaLogTag.DEF));
         DbAffixManager.getInstance().insert(bean1);
         DbAffixManager.getInstance().insert(bean2);
         DbAffixManager.getInstance().insert(bean3);
@@ -139,12 +141,12 @@ public class DbGoodsManager {
     public void createHand(Goods goods){
         goods.setName("四象护手 + "+getGoodsByType(goods.getType()).size());
         goods.setLength(Helper.getLength());
-        goods.setBase_type(1);
-        goods.setBase_name("气血");
+        goods.setBase_type(Affix.TYPE_NORMAL);
+        goods.setBase_name(AnaLogTag.BLOOD);
         goods.setBase_number(1000);
-        AffixBean bean1 = Helper.createAffixBean(goods.getId(),1,Helper.getAffixByName("敏捷"));
-        AffixBean bean2 = Helper.createAffixBean(goods.getId(),2,Helper.getAffixByName("力量"));
-        AffixBean bean3 = Helper.createAffixBean(goods.getId(),3,Helper.getAffixByName("精准"));
+        AffixBean bean1 = Helper.createAffixBean(goods.getId(),1,Helper.getAffixByTAG(AnaLogTag.AGI));
+        AffixBean bean2 = Helper.createAffixBean(goods.getId(),2,Helper.getAffixByTAG(AnaLogTag.POWER));
+        AffixBean bean3 = Helper.createAffixBean(goods.getId(),3,Helper.getAffixByTAG(AnaLogTag.ACC));
         DbAffixManager.getInstance().insert(bean1);
         DbAffixManager.getInstance().insert(bean2);
         DbAffixManager.getInstance().insert(bean3);
@@ -161,12 +163,12 @@ public class DbGoodsManager {
     public void createShoes(Goods goods){
         goods.setName("四象足具 + "+getGoodsByType(goods.getType()).size());
         goods.setLength(Helper.getLength());
-        goods.setBase_type(1);
-        goods.setBase_name("防御");
+        goods.setBase_type(Affix.TYPE_NORMAL);
+        goods.setBase_name(AnaLogTag.DEF);
         goods.setBase_number(500);
-        AffixBean bean1 = Helper.createAffixBean(goods.getId(),1,Helper.getAffixByName("敏捷"));
-        AffixBean bean2 = Helper.createAffixBean(goods.getId(),2,Helper.getAffixByName("气血"));
-        AffixBean bean3 = Helper.createAffixBean(goods.getId(),3,Helper.getAffixByName("闪避"));
+        AffixBean bean1 = Helper.createAffixBean(goods.getId(),1,Helper.getAffixByTAG(AnaLogTag.AGI));
+        AffixBean bean2 = Helper.createAffixBean(goods.getId(),2,Helper.getAffixByTAG(AnaLogTag.BLOOD));
+        AffixBean bean3 = Helper.createAffixBean(goods.getId(),3,Helper.getAffixByTAG(AnaLogTag.ELU));
         DbAffixManager.getInstance().insert(bean1);
         DbAffixManager.getInstance().insert(bean2);
         DbAffixManager.getInstance().insert(bean3);
@@ -182,13 +184,13 @@ public class DbGoodsManager {
      */
     public void createNecklace(Goods goods){
         goods.setName("四象项链 + "+getGoodsByType(goods.getType()).size());
-        goods.setBase_type(1);
-        goods.setBase_name("暴击伤害增加");
+        goods.setBase_type(Affix.TYPE_NORMAL);
+        goods.setBase_name(AnaLogTag.CRIT);
         goods.setBase_number(500);
         goods.setLength(Helper.getLength());
-        AffixBean bean1 = Helper.createAffixBean(goods.getId(),1,Helper.getAffixByName("敏捷"));
-        AffixBean bean2 = Helper.createAffixBean(goods.getId(),2,Helper.getAffixByName("力量"));
-        AffixBean bean3 = Helper.createAffixBean(goods.getId(),3,Helper.getAffixByName("暴击伤害增加"));
+        AffixBean bean1 = Helper.createAffixBean(goods.getId(),1,Helper.getAffixByTAG(AnaLogTag.AGI));
+        AffixBean bean2 = Helper.createAffixBean(goods.getId(),2,Helper.getAffixByTAG(AnaLogTag.POWER));
+        AffixBean bean3 = Helper.createAffixBean(goods.getId(),3,Helper.getAffixByTAG(AnaLogTag.CRIT));
         DbAffixManager.getInstance().insert(bean1);
         DbAffixManager.getInstance().insert(bean2);
         DbAffixManager.getInstance().insert(bean3);

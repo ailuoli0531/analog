@@ -15,6 +15,7 @@ import com.born.analog.Helper;
 import com.born.analog.R;
 import com.born.analog.manager.DbAffixManager;
 import com.born.analog.manager.DbGoodsManager;
+import com.born.analog.module.Affix;
 import com.born.analog.module.AffixBean;
 import com.born.analog.module.Goods;
 
@@ -143,16 +144,17 @@ public class AffixActivity extends BaseActivity implements View.OnClickListener 
         }
         //每增加一个词条，基础+100
         int type = goods.getBase_type();
-        StringBuilder sb = new StringBuilder(goods.getBase_name());
+        Affix affix = Helper.getAffixByTAG(goods.getBase_name());
+        StringBuilder sb = new StringBuilder(affix.getDescribe());
         //判断包含几个神赐属性
         int sc = Helper.includeSC(goods);
-        if(type==1){
+        if(type==Affix.TYPE_NORMAL){
             //固定值
             int space = goods.getBase_number()+(affixBeanList.size()-3)*100+goods.getBase_number()/2*sc;
             sb.append(" ");
             sb.append(space);
             goods.setBase_space(space);
-        }else if(type==0){
+        }else if(type==Affix.TYPE_MIN_MAX){
             //最大最小
             int min = goods.getBase_minNumber()+(affixBeanList.size()-3)*100 + goods.getBase_minNumber()/2*sc;
             int max = goods.getBase_maxNumber()+(affixBeanList.size()-3)*100 + goods.getBase_maxNumber()/2*sc;
@@ -160,7 +162,6 @@ public class AffixActivity extends BaseActivity implements View.OnClickListener 
             sb.append(min);
             sb.append("-");
             sb.append(max);
-
             goods.setBase_minSpace(min);
             goods.setBase_maxSpace(max);
         }
@@ -186,7 +187,7 @@ public class AffixActivity extends BaseActivity implements View.OnClickListener 
     }
 
 
-    private  class AffixAdapter extends BaseAdapter{
+    private class AffixAdapter extends BaseAdapter{
         private LayoutInflater inflater;
         private int pink,purple;
         public AffixAdapter(){
@@ -217,8 +218,20 @@ public class AffixActivity extends BaseActivity implements View.OnClickListener 
             final TextView name = view.findViewById(R.id.name);
             final TextView describe = view.findViewById(R.id.describe);
             AffixBean affixBean = affixBeanList.get(i);
-            name.setText(affixBean.getName());
-            describe.setText(String.valueOf(affixBean.getSpace()));
+            Affix affix = Helper.getAffixByTAG(affixBean.getTag());
+
+//            name.setText(affix.getDescribe());
+            StringBuilder sb = new StringBuilder();
+            sb.append(affix.getDescribe());
+            if(affix.getType() == Affix.TYPE_NORMAL){
+                sb.append(affixBean.getSpace());
+            }
+            else if(affix.getType() == Affix.TYPE_PERCENT){
+                sb.append(affixBean.getSpace());
+                sb.append("%");
+            }
+
+            describe.setText(sb);
 
             if(affixBeanList.size()>5){
                 name.setTextColor(purple);

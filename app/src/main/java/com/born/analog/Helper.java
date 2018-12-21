@@ -145,19 +145,15 @@ public class Helper {
             affixBean.setGoodsId(goodsId);
             affixBean.setPosition(position);
         }
+        affixBean.setTag(affix.getTag());
         affixBean.setName(affix.getName());
         affixBean.setType(affix.getType());
         int type = affix.getType();
-        if (type == 0 || type == 3) {
-            //大小值或百分比最大最小
+        if(type == Affix.TYPE_NORMAL||type == Affix.TYPE_PERCENT ){
             int num = getRandom(affix.getMinSpace(), affix.getMaxSpace());
             affixBean.setSpace(num);
-        } else if (type == 1) {
-            //没有
-        } else if (type == 2) {
-            //固定百分比
-            affixBean.setSpace(affix.getSpace());
         }
+
         return affixBean;
     }
 
@@ -180,14 +176,14 @@ public class Helper {
     }
 
     /**
-     * 通过名字查找词条
+     * 通过TAG查找词条
      *
-     * @param name
+     * @param tag
      * @return
      */
-    public static Affix getAffixByName(String name) {
+    public static Affix getAffixByTAG(String tag) {
         for (Affix affix : AnaLog.AffixList) {
-            if (affix.getName().equals(name)) {
+            if (affix.getTag().equals(tag)) {
                 return affix;
             }
         }
