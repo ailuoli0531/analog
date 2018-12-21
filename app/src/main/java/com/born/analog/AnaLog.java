@@ -11,7 +11,6 @@ import java.util.List;
  * created by born on 2018/12/10.
  */
 public class AnaLog {
-    private static AnaLog anaLog;
     public static List<Affix> AffixList = new ArrayList<>();
     public static List<Affix> Affix_Weapon = new ArrayList<>();
     public static List<Affix> Affix_Armour = new ArrayList<>();

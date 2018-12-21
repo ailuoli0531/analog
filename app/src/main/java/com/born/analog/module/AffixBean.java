@@ -9,7 +9,7 @@ import org.greenrobot.greendao.annotation.Unique;
  */
 @Entity
 public class AffixBean {
-    //唯一id
+    //唯一id 生成规则：goodsId+"_"+position
     @Unique
     private String id;
     //属性代号
@@ -22,67 +22,62 @@ public class AffixBean {
     private int space;
     //在词条中的位置
     private int position;
-
-    @Generated(hash = 1280909766)
+    //所属装备id
+    private String goodsId;
+    @Generated(hash = 639474552)
     public AffixBean(String id, String tag, String name, int type, int space,
-            int position) {
+            int position, String goodsId) {
         this.id = id;
         this.tag = tag;
         this.name = name;
         this.type = type;
         this.space = space;
         this.position = position;
+        this.goodsId = goodsId;
     }
-
     @Generated(hash = 1485004947)
     public AffixBean() {
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
-    }
-
-    public int getSpace() {
-        return space;
-    }
-
-    public void setSpace(int space) {
-        this.space = space;
-    }
-
     public String getId() {
-        return id;
+        return this.id;
     }
-
     public void setId(String id) {
         this.id = id;
     }
-
     public String getTag() {
-        return tag;
+        return this.tag;
     }
-
     public void setTag(String tag) {
         this.tag = tag;
     }
-
+    public String getName() {
+        return this.name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public int getType() {
+        return this.type;
+    }
+    public void setType(int type) {
+        this.type = type;
+    }
+    public int getSpace() {
+        return this.space;
+    }
+    public void setSpace(int space) {
+        this.space = space;
+    }
     public int getPosition() {
         return this.position;
     }
-
     public void setPosition(int position) {
         this.position = position;
+    }
+    public String getGoodsId() {
+        return this.goodsId;
+    }
+    public void setGoodsId(String goodsId) {
+        this.goodsId = goodsId;
     }
 }

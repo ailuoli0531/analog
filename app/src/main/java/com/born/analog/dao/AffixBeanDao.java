@@ -31,6 +31,7 @@ public class AffixBeanDao extends AbstractDao<AffixBean, Void> {
         public final static Property Type = new Property(3, int.class, "type", false, "TYPE");
         public final static Property Space = new Property(4, int.class, "space", false, "SPACE");
         public final static Property Position = new Property(5, int.class, "position", false, "POSITION");
+        public final static Property GoodsId = new Property(6, String.class, "goodsId", false, "GOODS_ID");
     }
 
 
@@ -51,7 +52,8 @@ public class AffixBeanDao extends AbstractDao<AffixBean, Void> {
                 "\"NAME\" TEXT," + // 2: name
                 "\"TYPE\" INTEGER NOT NULL ," + // 3: type
                 "\"SPACE\" INTEGER NOT NULL ," + // 4: space
-                "\"POSITION\" INTEGER NOT NULL );"); // 5: position
+                "\"POSITION\" INTEGER NOT NULL ," + // 5: position
+                "\"GOODS_ID\" TEXT);"); // 6: goodsId
     }
 
     /** Drops the underlying database table. */
@@ -81,6 +83,11 @@ public class AffixBeanDao extends AbstractDao<AffixBean, Void> {
         stmt.bindLong(4, entity.getType());
         stmt.bindLong(5, entity.getSpace());
         stmt.bindLong(6, entity.getPosition());
+ 
+        String goodsId = entity.getGoodsId();
+        if (goodsId != null) {
+            stmt.bindString(7, goodsId);
+        }
     }
 
     @Override
@@ -104,6 +111,11 @@ public class AffixBeanDao extends AbstractDao<AffixBean, Void> {
         stmt.bindLong(4, entity.getType());
         stmt.bindLong(5, entity.getSpace());
         stmt.bindLong(6, entity.getPosition());
+ 
+        String goodsId = entity.getGoodsId();
+        if (goodsId != null) {
+            stmt.bindString(7, goodsId);
+        }
     }
 
     @Override
@@ -119,7 +131,8 @@ public class AffixBeanDao extends AbstractDao<AffixBean, Void> {
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // name
             cursor.getInt(offset + 3), // type
             cursor.getInt(offset + 4), // space
-            cursor.getInt(offset + 5) // position
+            cursor.getInt(offset + 5), // position
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6) // goodsId
         );
         return entity;
     }
@@ -132,6 +145,7 @@ public class AffixBeanDao extends AbstractDao<AffixBean, Void> {
         entity.setType(cursor.getInt(offset + 3));
         entity.setSpace(cursor.getInt(offset + 4));
         entity.setPosition(cursor.getInt(offset + 5));
+        entity.setGoodsId(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
      }
     
     @Override

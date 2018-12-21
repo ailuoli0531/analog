@@ -20,96 +20,80 @@ public class DbAffixManager {
     private static DbAffixManager manager;
     private static AffixBeanDao affixBeanDao;
 
-    public static DbAffixManager getInstance(){
-        if(manager == null){
+    public static DbAffixManager getInstance() {
+        if (manager == null) {
             manager = new DbAffixManager();
         }
-        if(affixBeanDao==null){
+        if (affixBeanDao == null) {
             affixBeanDao = DaoHelper.getInstance().getSession().getAffixBeanDao();
         }
 
         return manager;
     }
 
-    /**
-     * 通过id 获取词条
-     * @param id
+    /***
+     * @param affixId
      * @return
      */
-    public AffixBean getAffixById(String id){
-        WhereCondition wc = AffixBeanDao.Properties.Id.eq(id);
+    public AffixBean getAffixById(String affixId) {
+        WhereCondition wc = AffixBeanDao.Properties.Id.eq(affixId);
         return affixBeanDao.queryBuilder().where(wc).unique();
     }
 
-    public AffixBean createAffix(String id){
-        AffixBean affixBean = new AffixBean();
-        affixBean.setId(id);
-        return affixBean;
+    /**
+     * 通过装备id查询词条列表
+     *
+     * @param goodsId
+     * @return
+     */
+    public List<AffixBean> getAffixListByGoodsId(String goodsId) {
+        Goods goods = DbGoodsManager.getInstance().getGoodsById(goodsId);
+        WhereCondition wc = AffixBeanDao.Properties.GoodsId.eq(goodsId);
+        WhereCondition wc2 = AffixBeanDao.Properties.Position.le(goods.getLength()+1);
+        return affixBeanDao.queryBuilder().where(wc,wc2).list();
     }
 
     /**
      * 根据原来的词条，生成新词条
+     *
      * @param goods
      * @return
      */
-    public List<AffixBean> createAffixList(Goods goods){
+    public List<AffixBean> createAffixList(Goods goods) {
         List<AffixBean> affixBeanList = new ArrayList<>();
 
-        for(int i=1;i<=3;i++){
-            AffixBean affixBean = null;
-            if(i==1){
-                affixBean = DbAffixManager.getInstance().getAffixById(goods.getId_1());
-            }else if(i==2){
-                affixBean = DbAffixManager.getInstance().getAffixById(goods.getId_2());
-            }else if(i==3){
-                affixBean = DbAffixManager.getInstance().getAffixById(goods.getId_3());
-            }
-            if(affixBean.getType()==0 || affixBean.getType()==3){
+        for (int i = 1; i <= 3; i++) {
+            String affixId = Helper.buildAffixId(goods.getId(),i);
+            AffixBean affixBean = DbAffixManager.getInstance().getAffixById(affixId);
+            if (affixBean.getType() == 0 || affixBean.getType() == 3) {
                 Affix affix = Helper.getAffixByName(affixBean.getName());
-                affixBean.setSpace(Helper.getRandom(affix.getMinSpace(),affix.getMaxSpace()));
+                affixBean.setSpace(Helper.getRandom(affix.getMinSpace(), affix.getMaxSpace()));
                 affixBeanList.add(affixBean);
-            }else{
+            } else {
                 affixBeanList.add(affixBean);
             }
         }
-
-        for(int i=1;i<=goods.getLength();i++){
-            if(i==1){
-                AffixBean affixBean = Helper.getAffixBean(affixBeanList,goods.getId_4(),goods.getType());
-                DbAffixManager.getInstance().insert(affixBean);
-                affixBeanList.add(affixBean);
-            }else if(i==2){
-                AffixBean affixBean = Helper.getAffixBean(affixBeanList,goods.getId_5(),goods.getType());
-                DbAffixManager.getInstance().insert(affixBean);
-                affixBeanList.add(affixBean);
-            }else if(i==3){
-                AffixBean affixBean = Helper.getAffixBean(affixBeanList,goods.getId_6(),goods.getType());
-                DbAffixManager.getInstance().insert(affixBean);
-                affixBeanList.add(affixBean);
-            }else if(i==4){
-                AffixBean affixBean = Helper.getAffixBean(affixBeanList,goods.getId_7(),goods.getType());
-                DbAffixManager.getInstance().insert(affixBean);
-                affixBeanList.add(affixBean);
-            }else if(i==5){
-                AffixBean affixBean = Helper.getAffixBean(affixBeanList,goods.getId_8(),goods.getType());
-                DbAffixManager.getInstance().insert(affixBean);
-                affixBeanList.add(affixBean);
-            }
+        //从第4条开始
+        for (int i = 4; i <= goods.getLength(); i++) {
+            AffixBean affixBean = Helper.getAffixBean(goods.getId(), affixBeanList, goods.getType());
+            DbAffixManager.getInstance().insert(affixBean);
+            affixBeanList.add(affixBean);
         }
         return affixBeanList;
     }
 
 
-    public void insert(List<AffixBean> affixBeanList){
+    public void insert(List<AffixBean> affixBeanList) {
         affixBeanDao.insertOrReplaceInTx(affixBeanList);
     }
 
     /**
      * 新入库或替换
+     *
      * @param affixBean
      * @return
      */
-    public long insert(AffixBean affixBean){
+    public long insert(AffixBean affixBean) {
         return affixBeanDao.insertOrReplace(affixBean);
     }
 }

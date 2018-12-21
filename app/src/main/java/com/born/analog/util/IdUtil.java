@@ -13,7 +13,8 @@ public class IdUtil {
      */
     public static String createId(int type){
         long cur = System.currentTimeMillis();
-        StringBuilder sb = new StringBuilder(type);
+        StringBuilder sb = new StringBuilder();
+        sb.append(type);
         sb.append("_");
         sb.append(cur);
         return sb.toString();

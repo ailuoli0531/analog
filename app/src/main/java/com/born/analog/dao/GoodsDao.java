@@ -41,16 +41,6 @@ public class GoodsDao extends AbstractDao<Goods, Void> {
         public final static Property Base_space = new Property(13, int.class, "base_space", false, "BASE_SPACE");
         public final static Property Base_minSpace = new Property(14, int.class, "base_minSpace", false, "BASE_MIN_SPACE");
         public final static Property Base_maxSpace = new Property(15, int.class, "base_maxSpace", false, "BASE_MAX_SPACE");
-        public final static Property Id_1 = new Property(16, String.class, "id_1", false, "ID_1");
-        public final static Property Id_2 = new Property(17, String.class, "id_2", false, "ID_2");
-        public final static Property Id_3 = new Property(18, String.class, "id_3", false, "ID_3");
-        public final static Property Id_4 = new Property(19, String.class, "id_4", false, "ID_4");
-        public final static Property Id_5 = new Property(20, String.class, "id_5", false, "ID_5");
-        public final static Property Id_6 = new Property(21, String.class, "id_6", false, "ID_6");
-        public final static Property Id_7 = new Property(22, String.class, "id_7", false, "ID_7");
-        public final static Property Id_8 = new Property(23, String.class, "id_8", false, "ID_8");
-        public final static Property Id_9 = new Property(24, String.class, "id_9", false, "ID_9");
-        public final static Property Id_10 = new Property(25, String.class, "id_10", false, "ID_10");
     }
 
 
@@ -81,17 +71,7 @@ public class GoodsDao extends AbstractDao<Goods, Void> {
                 "\"BASE_NUMBER\" INTEGER NOT NULL ," + // 12: base_number
                 "\"BASE_SPACE\" INTEGER NOT NULL ," + // 13: base_space
                 "\"BASE_MIN_SPACE\" INTEGER NOT NULL ," + // 14: base_minSpace
-                "\"BASE_MAX_SPACE\" INTEGER NOT NULL ," + // 15: base_maxSpace
-                "\"ID_1\" TEXT," + // 16: id_1
-                "\"ID_2\" TEXT," + // 17: id_2
-                "\"ID_3\" TEXT," + // 18: id_3
-                "\"ID_4\" TEXT," + // 19: id_4
-                "\"ID_5\" TEXT," + // 20: id_5
-                "\"ID_6\" TEXT," + // 21: id_6
-                "\"ID_7\" TEXT," + // 22: id_7
-                "\"ID_8\" TEXT," + // 23: id_8
-                "\"ID_9\" TEXT," + // 24: id_9
-                "\"ID_10\" TEXT);"); // 25: id_10
+                "\"BASE_MAX_SPACE\" INTEGER NOT NULL );"); // 15: base_maxSpace
     }
 
     /** Drops the underlying database table. */
@@ -139,56 +119,6 @@ public class GoodsDao extends AbstractDao<Goods, Void> {
         stmt.bindLong(14, entity.getBase_space());
         stmt.bindLong(15, entity.getBase_minSpace());
         stmt.bindLong(16, entity.getBase_maxSpace());
- 
-        String id_1 = entity.getId_1();
-        if (id_1 != null) {
-            stmt.bindString(17, id_1);
-        }
- 
-        String id_2 = entity.getId_2();
-        if (id_2 != null) {
-            stmt.bindString(18, id_2);
-        }
- 
-        String id_3 = entity.getId_3();
-        if (id_3 != null) {
-            stmt.bindString(19, id_3);
-        }
- 
-        String id_4 = entity.getId_4();
-        if (id_4 != null) {
-            stmt.bindString(20, id_4);
-        }
- 
-        String id_5 = entity.getId_5();
-        if (id_5 != null) {
-            stmt.bindString(21, id_5);
-        }
- 
-        String id_6 = entity.getId_6();
-        if (id_6 != null) {
-            stmt.bindString(22, id_6);
-        }
- 
-        String id_7 = entity.getId_7();
-        if (id_7 != null) {
-            stmt.bindString(23, id_7);
-        }
- 
-        String id_8 = entity.getId_8();
-        if (id_8 != null) {
-            stmt.bindString(24, id_8);
-        }
- 
-        String id_9 = entity.getId_9();
-        if (id_9 != null) {
-            stmt.bindString(25, id_9);
-        }
- 
-        String id_10 = entity.getId_10();
-        if (id_10 != null) {
-            stmt.bindString(26, id_10);
-        }
     }
 
     @Override
@@ -230,56 +160,6 @@ public class GoodsDao extends AbstractDao<Goods, Void> {
         stmt.bindLong(14, entity.getBase_space());
         stmt.bindLong(15, entity.getBase_minSpace());
         stmt.bindLong(16, entity.getBase_maxSpace());
- 
-        String id_1 = entity.getId_1();
-        if (id_1 != null) {
-            stmt.bindString(17, id_1);
-        }
- 
-        String id_2 = entity.getId_2();
-        if (id_2 != null) {
-            stmt.bindString(18, id_2);
-        }
- 
-        String id_3 = entity.getId_3();
-        if (id_3 != null) {
-            stmt.bindString(19, id_3);
-        }
- 
-        String id_4 = entity.getId_4();
-        if (id_4 != null) {
-            stmt.bindString(20, id_4);
-        }
- 
-        String id_5 = entity.getId_5();
-        if (id_5 != null) {
-            stmt.bindString(21, id_5);
-        }
- 
-        String id_6 = entity.getId_6();
-        if (id_6 != null) {
-            stmt.bindString(22, id_6);
-        }
- 
-        String id_7 = entity.getId_7();
-        if (id_7 != null) {
-            stmt.bindString(23, id_7);
-        }
- 
-        String id_8 = entity.getId_8();
-        if (id_8 != null) {
-            stmt.bindString(24, id_8);
-        }
- 
-        String id_9 = entity.getId_9();
-        if (id_9 != null) {
-            stmt.bindString(25, id_9);
-        }
- 
-        String id_10 = entity.getId_10();
-        if (id_10 != null) {
-            stmt.bindString(26, id_10);
-        }
     }
 
     @Override
@@ -305,17 +185,7 @@ public class GoodsDao extends AbstractDao<Goods, Void> {
             cursor.getInt(offset + 12), // base_number
             cursor.getInt(offset + 13), // base_space
             cursor.getInt(offset + 14), // base_minSpace
-            cursor.getInt(offset + 15), // base_maxSpace
-            cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16), // id_1
-            cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17), // id_2
-            cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18), // id_3
-            cursor.isNull(offset + 19) ? null : cursor.getString(offset + 19), // id_4
-            cursor.isNull(offset + 20) ? null : cursor.getString(offset + 20), // id_5
-            cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21), // id_6
-            cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22), // id_7
-            cursor.isNull(offset + 23) ? null : cursor.getString(offset + 23), // id_8
-            cursor.isNull(offset + 24) ? null : cursor.getString(offset + 24), // id_9
-            cursor.isNull(offset + 25) ? null : cursor.getString(offset + 25) // id_10
+            cursor.getInt(offset + 15) // base_maxSpace
         );
         return entity;
     }
@@ -338,16 +208,6 @@ public class GoodsDao extends AbstractDao<Goods, Void> {
         entity.setBase_space(cursor.getInt(offset + 13));
         entity.setBase_minSpace(cursor.getInt(offset + 14));
         entity.setBase_maxSpace(cursor.getInt(offset + 15));
-        entity.setId_1(cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16));
-        entity.setId_2(cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17));
-        entity.setId_3(cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18));
-        entity.setId_4(cursor.isNull(offset + 19) ? null : cursor.getString(offset + 19));
-        entity.setId_5(cursor.isNull(offset + 20) ? null : cursor.getString(offset + 20));
-        entity.setId_6(cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21));
-        entity.setId_7(cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22));
-        entity.setId_8(cursor.isNull(offset + 23) ? null : cursor.getString(offset + 23));
-        entity.setId_9(cursor.isNull(offset + 24) ? null : cursor.getString(offset + 24));
-        entity.setId_10(cursor.isNull(offset + 25) ? null : cursor.getString(offset + 25));
      }
     
     @Override

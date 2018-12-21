@@ -91,23 +91,7 @@ public class AffixActivity extends BaseActivity implements View.OnClickListener 
 
         checkUse();
 
-        affixBeanList.add(DbAffixManager.getInstance().getAffixById(goods.getId_1()));
-        affixBeanList.add(DbAffixManager.getInstance().getAffixById(goods.getId_2()));
-        affixBeanList.add(DbAffixManager.getInstance().getAffixById(goods.getId_3()));
-
-        for(int i =1;i<=goods.getLength();i++){
-            if(i==1){
-                affixBeanList.add(DbAffixManager.getInstance().getAffixById(goods.getId_4()));
-            }else if(i==2){
-                affixBeanList.add(DbAffixManager.getInstance().getAffixById(goods.getId_5()));
-            }else if(i==3){
-                affixBeanList.add(DbAffixManager.getInstance().getAffixById(goods.getId_6()));
-            }else if(i==4){
-                affixBeanList.add(DbAffixManager.getInstance().getAffixById(goods.getId_7()));
-            }else if(i==5){
-                affixBeanList.add(DbAffixManager.getInstance().getAffixById(goods.getId_8()));
-            }
-        }
+        affixBeanList = DbAffixManager.getInstance().getAffixListByGoodsId(goodsId);
 
         refreshHead();
         adapter.notifyDataSetChanged();

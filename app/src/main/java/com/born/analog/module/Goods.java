@@ -17,16 +17,7 @@ public class Goods {
         String goodsId = IdUtil.createId(type);
         goods.setType(type);
         goods.setId(goodsId);
-        goods.setId_1(IdUtil.createId(goodsId,1));
-        goods.setId_2(IdUtil.createId(goodsId,2));
-        goods.setId_3(IdUtil.createId(goodsId,3));
-        goods.setId_4(IdUtil.createId(goodsId,4));
-        goods.setId_5(IdUtil.createId(goodsId,5));
-        goods.setId_6(IdUtil.createId(goodsId,6));
-        goods.setId_7(IdUtil.createId(goodsId,7));
-        goods.setId_8(IdUtil.createId(goodsId,8));
-        goods.setId_9(IdUtil.createId(goodsId,9));
-        goods.setId_10(IdUtil.createId(goodsId,10));
+
         return goods;
     }
     public String getId() {
@@ -125,66 +116,6 @@ public class Goods {
     public void setBase_maxSpace(int base_maxSpace) {
         this.base_maxSpace = base_maxSpace;
     }
-    public String getId_1() {
-        return this.id_1;
-    }
-    public void setId_1(String id_1) {
-        this.id_1 = id_1;
-    }
-    public String getId_2() {
-        return this.id_2;
-    }
-    public void setId_2(String id_2) {
-        this.id_2 = id_2;
-    }
-    public String getId_3() {
-        return this.id_3;
-    }
-    public void setId_3(String id_3) {
-        this.id_3 = id_3;
-    }
-    public String getId_4() {
-        return this.id_4;
-    }
-    public void setId_4(String id_4) {
-        this.id_4 = id_4;
-    }
-    public String getId_5() {
-        return this.id_5;
-    }
-    public void setId_5(String id_5) {
-        this.id_5 = id_5;
-    }
-    public String getId_6() {
-        return this.id_6;
-    }
-    public void setId_6(String id_6) {
-        this.id_6 = id_6;
-    }
-    public String getId_7() {
-        return this.id_7;
-    }
-    public void setId_7(String id_7) {
-        this.id_7 = id_7;
-    }
-    public String getId_8() {
-        return this.id_8;
-    }
-    public void setId_8(String id_8) {
-        this.id_8 = id_8;
-    }
-    public String getId_9() {
-        return this.id_9;
-    }
-    public void setId_9(String id_9) {
-        this.id_9 = id_9;
-    }
-    public String getId_10() {
-        return this.id_10;
-    }
-    public void setId_10(String id_10) {
-        this.id_10 = id_10;
-    }
 
     //唯一id
     @Unique
@@ -221,24 +152,11 @@ public class Goods {
     private int base_space;
     private int base_minSpace;
     private int base_maxSpace;
-    //词条id
-    private String id_1;
-    private String id_2;
-    private String id_3;
-    private String id_4;
-    private String id_5;
-    private String id_6;
-    private String id_7;
-    private String id_8;
-    private String id_9;
-    private String id_10;
-    @Generated(hash = 1356655263)
+    @Generated(hash = 383150824)
     public Goods(String id, int type, String name, int length, long create_time,
             String creater, String owner, int use, int base_type, String base_name,
             int base_minNumber, int base_maxNumber, int base_number, int base_space,
-            int base_minSpace, int base_maxSpace, String id_1, String id_2,
-            String id_3, String id_4, String id_5, String id_6, String id_7,
-            String id_8, String id_9, String id_10) {
+            int base_minSpace, int base_maxSpace) {
         this.id = id;
         this.type = type;
         this.name = name;
@@ -255,20 +173,9 @@ public class Goods {
         this.base_space = base_space;
         this.base_minSpace = base_minSpace;
         this.base_maxSpace = base_maxSpace;
-        this.id_1 = id_1;
-        this.id_2 = id_2;
-        this.id_3 = id_3;
-        this.id_4 = id_4;
-        this.id_5 = id_5;
-        this.id_6 = id_6;
-        this.id_7 = id_7;
-        this.id_8 = id_8;
-        this.id_9 = id_9;
-        this.id_10 = id_10;
     }
     @Generated(hash = 1770709345)
     public Goods() {
     }
-  
-   
+
 }
