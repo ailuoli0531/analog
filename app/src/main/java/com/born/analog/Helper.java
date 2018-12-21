@@ -98,10 +98,48 @@ public class Helper {
         //获取当前词条
         Affix affix = getAffixByNum(affixList, curPro);
         //当前要生成的词条的位置
-        int position = affixBeanList.size() + 1;
+        int position = affixBeanList.size();
         //生成装备词缀
         return createAffixBean(goodsId, position, affix);
     }
+
+
+    /**
+     * 带位置
+     * 根据已有词缀生成下一条词缀
+     * type 装备类型
+     *
+     * @param affixBeanList
+     * @return
+     */
+    public static AffixBean getAffixBean(Goods goods, List<AffixBean> affixBeanList,int position) {
+        List<Affix> affixList;
+        int type = goods.getType();
+        if (type == 0) {
+            affixList = new ArrayList<>(AnaLog.Affix_Weapon);
+        } else if (type == 1) {
+            affixList = new ArrayList<>(AnaLog.Affix_Armour);
+        } else if (type == 2) {
+            affixList = new ArrayList<>(AnaLog.Affix_Hand);
+        } else if (type == 3) {
+            affixList = new ArrayList<>(AnaLog.Affix_Shoes);
+        } else if (type == 4) {
+            affixList = new ArrayList<>(AnaLog.Affix_Necklace);
+        } else {
+            affixList = new ArrayList<>(AnaLog.AffixList);
+        }
+
+        dealList(affixBeanList, affixList);
+        //过滤完后，获取总概率值
+        int totalPro = getTotalPro(affixList);
+        //生成范围内随机值
+        int curPro = getRandom(1, totalPro);
+        //获取当前词条
+        Affix affix = getAffixByNum(affixList, curPro);
+        //生成装备词缀
+        return createAffixBean(goods.getId(), position, affix);
+    }
+
 
     /**
      * 处理一下集合数据

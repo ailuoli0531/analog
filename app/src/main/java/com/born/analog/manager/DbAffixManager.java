@@ -49,8 +49,8 @@ public class DbAffixManager {
     public List<AffixBean> getAffixListByGoodsId(String goodsId) {
         Goods goods = DbGoodsManager.getInstance().getGoodsById(goodsId);
         WhereCondition wc = AffixBeanDao.Properties.GoodsId.eq(goodsId);
-        WhereCondition wc2 = AffixBeanDao.Properties.Position.le(goods.getLength()+1);
-        return affixBeanDao.queryBuilder().where(wc,wc2).list();
+        WhereCondition wc2 = AffixBeanDao.Properties.Position.le(goods.getLength());
+        return affixBeanDao.queryBuilder().where(wc,wc2).orderAsc(AffixBeanDao.Properties.Position).list();
     }
 
     /**
@@ -62,7 +62,7 @@ public class DbAffixManager {
     public List<AffixBean> createAffixList(Goods goods) {
         List<AffixBean> affixBeanList = new ArrayList<>();
 
-        for (int i = 1; i <= 3; i++) {
+        for (int i = 0; i < 3; i++) {
             String affixId = Helper.buildAffixId(goods.getId(),i);
             AffixBean affixBean = DbAffixManager.getInstance().getAffixById(affixId);
             if (affixBean.getType() == Affix.TYPE_NORMAL || affixBean.getType() == Affix.TYPE_PERCENT) {
@@ -74,7 +74,7 @@ public class DbAffixManager {
             }
         }
         //从第4条开始
-        for (int i = 4; i <= goods.getLength(); i++) {
+        for (int i = 3; i < goods.getLength(); i++) {
             AffixBean affixBean = Helper.getAffixBean(goods.getId(), affixBeanList, goods.getType());
             DbAffixManager.getInstance().insert(affixBean);
             affixBeanList.add(affixBean);

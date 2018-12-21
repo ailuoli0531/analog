@@ -78,6 +78,7 @@ public class AffixActivity extends BaseActivity implements View.OnClickListener 
     private void initListener() {
         crash.setOnClickListener(this);
         use.setOnClickListener(this);
+        chou.setOnClickListener(this);
     }
 
     private void initData() {
@@ -131,6 +132,24 @@ public class AffixActivity extends BaseActivity implements View.OnClickListener 
     }
 
     /**
+     * 抽装备
+     */
+    private void chou() {
+        //根据goods长度随机一个position
+        int length = affixBeanList.size();
+        int position = Helper.getRandom(0,length-1);
+        AffixBean affixBean = affixBeanList.get(position);
+        affixBeanList.remove(affixBean);
+        affixBean = Helper.getAffixBean(goods,affixBeanList,position);
+        DbAffixManager.getInstance().insert(affixBean);
+
+        affixBeanList.clear();
+        affixBeanList = DbAffixManager.getInstance().getAffixListByGoodsId(goodsId);
+        refreshHead();
+        adapter.notifyDataSetChanged();
+    }
+
+    /**
      * 刷新头部信息 基础 姓名
      */
     private void refreshHead(){
@@ -175,8 +194,12 @@ public class AffixActivity extends BaseActivity implements View.OnClickListener 
             wash();
         }else if(view.getId() == R.id.use){
             useGoods();
+        }else if(view.getId() == R.id.chou){
+            chou();
         }
     }
+
+
 
     /**
      * 穿戴
