@@ -15,7 +15,7 @@
         android:layout_height="wrap_content" />
 
     <GridView
-        android:numColumns="3"
+        android:numColumns="2"
         android:layout_marginTop="25dp"
         android:id="@+id/pro_list"
         android:layout_marginLeft="15dp"

@@ -260,18 +260,18 @@ public class Helper {
     /**
      * 查询属性
      *
-     * @param name
+     * @param tag
      * @return
      */
-    public static int QueryPro(String name) {
+    public static int QueryPro(String tag) {
         int space = 0;
-        List<AffixBean> affixBeanList = querySql(name);
+        List<AffixBean> affixBeanList = querySql(tag);
         if (affixBeanList != null && !affixBeanList.isEmpty()) {
             for (AffixBean affixBean : affixBeanList) {
                 space += affixBean.getSpace();
             }
         }
-        List<Goods> goodsList = QueryBasePro(name);
+        List<Goods> goodsList = QueryBasePro(tag);
         if (!goodsList.isEmpty()) {
             for (Goods goods : goodsList) {
                 if (goods.getBase_type() == 1) {
@@ -296,7 +296,7 @@ public class Helper {
         return goodsList;
     }
 
-    private static List<AffixBean> querySql(String name) {
+    public static List<AffixBean> querySql(String tag) {
 
         String sql = "SELECT * FROM " + AffixBeanDao.TABLENAME + " INNER JOIN " + GoodsDao.TABLENAME
                 + " ON "
@@ -308,7 +308,7 @@ public class Helper {
                 + AffixBeanDao.TABLENAME + "." + AffixBeanDao.Properties.Position.columnName + " <="
                 + GoodsDao.TABLENAME + "." + GoodsDao.Properties.Length.columnName
                 + " AND "
-                + AffixBeanDao.TABLENAME + "." + AffixBeanDao.Properties.Name.columnName + " = '" + name + "'";
+                + AffixBeanDao.TABLENAME + "." + AffixBeanDao.Properties.Tag.columnName + " = '" + tag + "'";
 
 
         Cursor cursor = DaoHelper.getInstance().getSession().getDatabase().rawQuery(sql, null);
