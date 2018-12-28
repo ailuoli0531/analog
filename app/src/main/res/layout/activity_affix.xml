@@ -2,65 +2,80 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black">
+    android:background="@color/background">
 
-    <TextView
-        android:layout_marginTop="20dp"
-        android:id="@+id/name"
-        android:textColor="@color/pink"
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/tablebg" />
+
+    <LinearLayout
+        android:layout_marginTop="35dp"
+        android:paddingLeft="15dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:background="@drawable/detailbg"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <TextView
+        android:id="@+id/name"
+        android:layout_marginLeft="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/pink" />
+
     <TextView
         android:id="@+id/base"
-        android:layout_below="@+id/name"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/pink"
+        android:layout_marginLeft="15dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textColor="@color/white" />
+
     <ListView
         android:id="@+id/listview"
-        android:dividerHeight="0dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:divider="@color/transparent"
-        android:layout_below="@+id/base"
-        android:layout_marginTop="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:dividerHeight="0dp" />
 
+    </LinearLayout>
     <Button
         android:id="@+id/use"
-        android:layout_marginBottom="15dp"
-        android:text="穿戴"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@+id/btn_layout"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
+        android:text="穿戴" />
 
     <RelativeLayout
         android:id="@+id/btn_layout"
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
 
         <Button
             android:id="@+id/reset"
-            android:text="重置"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="重置" />
 
         <Button
             android:id="@+id/crash"
-            android:text="洗一下"
-            android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="洗一下" />
+
         <Button
             android:id="@+id/chou"
-            android:text="抽一下"
-            android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="抽一下" />
     </RelativeLayout>
 </RelativeLayout>

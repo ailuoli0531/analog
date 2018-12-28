@@ -19,7 +19,7 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
         android:id="@+id/goods_name"
-        android:textColor="#ffffff"
+        android:textColor="@color/normal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
         <TextView
@@ -36,7 +36,7 @@
         android:visibility="gone"
         android:text="新建"
         android:background="@color/pink"
-        android:textColor="#ffffff"
+        android:textColor="@color/normal"
         android:layout_below="@+id/goods_layout"
         android:gravity="center"
         android:layout_width="match_parent"

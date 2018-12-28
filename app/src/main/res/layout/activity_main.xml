@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/black"
+    android:background="@color/background"
     tools:context=".ui.MainActivity">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/tablebg" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
     <TextView
-        android:textColor="@color/white"
+        android:textColor="@color/normal"
         android:text="我的装备:"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
@@ -23,7 +30,7 @@
 
     <TextView
         android:id="@+id/text_mypro"
-        android:textColor="@color/white"
+        android:textColor="@color/normal"
         android:text="点击查看我的属性>>>"
         android:minHeight="40dp"
         android:gravity="center"
@@ -31,5 +38,5 @@
         android:layout_marginTop="25dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-
-</LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

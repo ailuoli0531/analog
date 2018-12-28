@@ -46,7 +46,7 @@ public class AffixActivity extends BaseActivity implements View.OnClickListener 
     private List<AffixBean> affixBeanList;
     private AffixAdapter adapter;
     private Button reset,crash,chou,use;
-
+    private int position = -1;
     private Goods goods;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -117,7 +117,7 @@ public class AffixActivity extends BaseActivity implements View.OnClickListener 
      * 洗装备
      */
     private void wash(){
-
+        position = -1;
         goods.setLength(Helper.getLength());
         List<AffixBean> affixBeans = DbAffixManager.getInstance().createAffixList(goods);
 
@@ -131,13 +131,29 @@ public class AffixActivity extends BaseActivity implements View.OnClickListener 
         adapter.notifyDataSetChanged();
     }
 
+    private Runnable washRun=new Runnable() {
+        @Override
+        public void run() {
+            hideDialog();
+            wash();
+        }
+    };
+
+    private Runnable chouRun = new Runnable() {
+        @Override
+        public void run() {
+            hideDialog();
+            chou();
+        }
+    };
+
     /**
      * 抽装备
      */
     private void chou() {
         //根据goods长度随机一个position
         int length = affixBeanList.size();
-        int position = Helper.getRandom(0,length-1);
+        position = Helper.getRandom(0,length-1);
         AffixBean affixBean = affixBeanList.get(position);
         affixBeanList.remove(affixBean);
         affixBean = Helper.getAffixBean(goods,affixBeanList,position);
@@ -156,10 +172,10 @@ public class AffixActivity extends BaseActivity implements View.OnClickListener 
         text_name.setText(goods.getName());
         if(affixBeanList.size()>5){
             text_name.setTextColor(getResources().getColor(R.color.purple));
-            text_base.setTextColor(getResources().getColor(R.color.purple));
+//            text_base.setTextColor(getResources().getColor(R.color.purple));
         }else{
             text_name.setTextColor(getResources().getColor(R.color.pink));
-            text_base.setTextColor(getResources().getColor(R.color.pink));
+//            text_base.setTextColor(getResources().getColor(R.color.pink));
         }
         //每增加一个词条，基础+100
         int type = goods.getBase_type();
@@ -191,11 +207,13 @@ public class AffixActivity extends BaseActivity implements View.OnClickListener 
     @Override
     public void onClick(View view) {
         if(view.getId()==R.id.crash){
-            wash();
+            showDialog();
+            view.postDelayed(washRun,500);
         }else if(view.getId() == R.id.use){
             useGoods();
         }else if(view.getId() == R.id.chou){
-            chou();
+           showDialog();
+           view.postDelayed(chouRun,500);
         }
     }
 
@@ -212,14 +230,17 @@ public class AffixActivity extends BaseActivity implements View.OnClickListener 
 
     private class AffixAdapter extends BaseAdapter{
         private LayoutInflater inflater;
-        private int pink,purple;
+        private int pink,purple,green;
+
         public AffixAdapter(){
             inflater = LayoutInflater.from(AffixActivity.this);
             pink = getResources().getColor(R.color.pink);
             purple = getResources().getColor(R.color.purple);
+            green = getResources().getColor(R.color.green);
+
         }
 
-
+        
         @Override
         public int getCount() {
             return affixBeanList.size();
@@ -262,6 +283,12 @@ public class AffixActivity extends BaseActivity implements View.OnClickListener 
             }else{
                 name.setTextColor(pink);
                 describe.setTextColor(pink);
+            }
+
+            if(i==position){
+                name.setTextColor(green);
+                describe.setTextColor(green);
+//                position = -1;
             }
 
             return view;
