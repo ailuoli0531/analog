@@ -17,4 +17,5 @@
     <color name="background">#ecf1f7</color>
     <color name="qing">#081523</color>
     <color name="normal">#2070ab</color>
+    <color name="normal_text_color">#515151</color>
 </resources>

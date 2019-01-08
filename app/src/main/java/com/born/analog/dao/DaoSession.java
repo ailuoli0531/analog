@@ -3,6 +3,7 @@ package com.born.analog.dao;
 import com.born.analog.module.AffixBean;
 import com.born.analog.module.Goods;
 import com.born.analog.module.Pannel;
+import com.born.analog.module.User;
 
 import org.greenrobot.greendao.AbstractDao;
 import org.greenrobot.greendao.AbstractDaoSession;
@@ -24,10 +25,12 @@ public class DaoSession extends AbstractDaoSession {
     private final DaoConfig goodsDaoConfig;
     private final DaoConfig affixBeanDaoConfig;
     private final DaoConfig pannelDaoConfig;
+    private final DaoConfig userDaoConfig;
 
     private final GoodsDao goodsDao;
     private final AffixBeanDao affixBeanDao;
     private final PannelDao pannelDao;
+    private final UserDao userDao;
 
     public DaoSession(Database db, IdentityScopeType type, Map<Class<? extends AbstractDao<?, ?>>, DaoConfig>
             daoConfigMap) {
@@ -42,19 +45,25 @@ public class DaoSession extends AbstractDaoSession {
         pannelDaoConfig = daoConfigMap.get(PannelDao.class).clone();
         pannelDaoConfig.initIdentityScope(type);
 
+        userDaoConfig = daoConfigMap.get(UserDao.class).clone();
+        userDaoConfig.initIdentityScope(type);
+
         goodsDao = new GoodsDao(goodsDaoConfig, this);
         affixBeanDao = new AffixBeanDao(affixBeanDaoConfig, this);
         pannelDao = new PannelDao(pannelDaoConfig, this);
+        userDao = new UserDao(userDaoConfig, this);
 
         registerDao(Goods.class, goodsDao);
         registerDao(AffixBean.class, affixBeanDao);
         registerDao(Pannel.class, pannelDao);
+        registerDao(User.class, userDao);
     }
     
     public void clear() {
         goodsDaoConfig.clearIdentityScope();
         affixBeanDaoConfig.clearIdentityScope();
         pannelDaoConfig.clearIdentityScope();
+        userDaoConfig.clearIdentityScope();
     }
 
     public GoodsDao getGoodsDao() {
@@ -67,6 +76,10 @@ public class DaoSession extends AbstractDaoSession {
 
     public PannelDao getPannelDao() {
         return pannelDao;
+    }
+
+    public UserDao getUserDao() {
+        return userDao;
     }
 
 }

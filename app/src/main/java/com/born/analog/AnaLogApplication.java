@@ -15,6 +15,8 @@ public class AnaLogApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        AppMgr.init(this);
         //初始化数据库
         DaoHelper.init(this);
         setTypeFace();
