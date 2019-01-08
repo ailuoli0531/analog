@@ -2,6 +2,9 @@ package com.born.analog;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.text.TextUtils;
+
+import com.born.analog.net.module.LoginModule;
 
 /**
  * created by born on 2019/1/8.
@@ -9,15 +12,79 @@ import android.content.SharedPreferences;
  */
 public class AppMgr {
     public static Context appContext;
+    private static SharedPreferences sharedPreferences;
+    private static SharedPreferences.Editor editor;
     public static void init(Context context){
         appContext = context;
+        sharedPreferences = context.getSharedPreferences("analog",
+                Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
     }
 
-    private static SharedPreferences sharedPreferences;
-    /*
-     * 保存手机里面的名字
+    private static String accountId;
+    private static String nickName;
+    private static String phoneNum;
+    private static String token;
+    private static final String USER_ACCOUNT = "user_accountId";
+    private static final String USER_NAME= "user_name";
+    private static final String USER_PHONE= "user_phone";
+    private static final String USER_TOKEN= "user_token";
+
+    /**
+     * 登录后保存用户信息
+     * @param loginModule
      */
-    private static SharedPreferences.Editor editor;
+    public static void initUser(LoginModule loginModule){
+        saveAccount(loginModule.getAccountId());
+        saveNickName(loginModule.getNickName());
+        savePhone(loginModule.getPhoneNum());
+        saveToken(loginModule.getToken());
+    }
+
+    private static void saveAccount(String accountId){
+        AppMgr.accountId = accountId;
+        save(USER_ACCOUNT,accountId);
+    }
+    private static void saveNickName(String nickName){
+        AppMgr.nickName = nickName;
+        save(USER_NAME,nickName);
+    }
+    private static void savePhone(String phoneNum){
+        AppMgr.phoneNum=phoneNum;
+        save(USER_PHONE,phoneNum);
+    }
+    private static void saveToken(String token){
+        AppMgr.token = token;
+        save(USER_TOKEN,token);
+    }
+
+    public static String getAccountId(){
+        if(TextUtils.isEmpty(accountId)){
+            accountId = (String) getSharedPreference(USER_ACCOUNT,null);
+        }
+        return accountId;
+    }
+    public static String getPhoneNum(){
+        if(TextUtils.isEmpty(phoneNum)){
+            phoneNum = (String) getSharedPreference(USER_PHONE,null);
+        }
+        return phoneNum;
+    }
+
+    public static String getToken(){
+        if(TextUtils.isEmpty(token)){
+            token = (String) getSharedPreference(USER_TOKEN,null);
+        }
+        return token;
+    }
+
+    public static String getNickName(){
+        if(TextUtils.isEmpty(nickName)){
+            nickName = (String) getSharedPreference(USER_NAME,null);
+        }
+        return nickName;
+    }
+
     /**
      * 获取保存的数据
      */

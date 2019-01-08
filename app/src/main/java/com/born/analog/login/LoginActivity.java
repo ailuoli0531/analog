@@ -1,5 +1,6 @@
 package com.born.analog.login;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatEditText;
@@ -8,22 +9,27 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.born.analog.AppMgr;
 import com.born.analog.R;
+import com.born.analog.net.RequestUtil;
+import com.born.analog.net.base.SimpleCallBack;
+import com.born.analog.net.module.LoginModule;
 import com.born.analog.ui.BaseActivity;
-import com.born.analog.util.ToastUtil;
+import com.born.analog.ui.MainActivity;
 
 /**
  * created by born on 2019/1/8.
  * 注册
  */
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
-    private LinearLayout layout_verify,layout_login;
-    private ImageView btn_login,btn_rigist;
-    private AppCompatEditText edit_phone,edit_code,edit_psd;
+    private LinearLayout layout_verify, layout_login;
+    private ImageView btn_login, btn_rigist;
+    private AppCompatEditText edit_phone, edit_code, edit_psd;
     /**
      * 0 登录 1注册
      */
     private int LOGIN_MODE = 0;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +57,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.btn_login:
                 LOGIN_MODE = 0;
                 layout_verify.setVisibility(View.GONE);
@@ -71,17 +77,78 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     }
 
     private void loginIn() {
-        if(TextUtils.isEmpty(edit_phone.getText())){
+        if (TextUtils.isEmpty(edit_phone.getText())) {
             return;
         }
-        if(TextUtils.isEmpty(edit_psd.getText())){
-            return;
-        }
-
-        if(LOGIN_MODE==1 && TextUtils.isEmpty(edit_code.getText())){
+        if (TextUtils.isEmpty(edit_psd.getText())) {
             return;
         }
 
-        ToastUtil.show("开发中...");
+        if (LOGIN_MODE == 1 && TextUtils.isEmpty(edit_code.getText())) {
+            return;
+        }
+
+        String phone = edit_phone.getText().toString().trim();
+        String psd = edit_psd.getText().toString().trim();
+
+
+        if (LOGIN_MODE == 0) {
+            login(phone, psd);
+        } else if (LOGIN_MODE == 1) {
+            String verify = edit_code.getText().toString().trim();
+            register(phone,psd,verify);
+        }
+    }
+
+    /**
+     * 注册
+     * @param phone
+     * @param psd
+     * @param verify
+     */
+    private void register(String phone, String psd, String verify) {
+        showDialog();
+        RequestUtil.register(phone, verify, psd, new SimpleCallBack<LoginModule>() {
+            @Override
+            public void onSuccess(LoginModule loginModule) {
+                hideDialog();
+                AppMgr.initUser(loginModule);
+                toMain();
+            }
+
+            @Override
+            public void onFail() {
+                hideDialog();
+            }
+        });
+    }
+
+    /**
+     * 登录
+     * @param phone
+     * @param psd
+     */
+    private void login(String phone, String psd) {
+        showDialog();
+        RequestUtil.login(phone, psd, new SimpleCallBack<LoginModule>() {
+            @Override
+            public void onSuccess(LoginModule loginModule) {
+                hideDialog();
+                AppMgr.initUser(loginModule);
+                toMain();
+            }
+
+            @Override
+            public void onFail() {
+                hideDialog();
+            }
+        });
+    }
+
+
+    private void toMain(){
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

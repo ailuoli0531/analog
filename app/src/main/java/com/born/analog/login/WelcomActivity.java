@@ -3,9 +3,11 @@ package com.born.analog.login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.widget.LinearLayout;
 
 import com.born.analog.AnaLog;
+import com.born.analog.AppMgr;
 import com.born.analog.R;
 import com.born.analog.manager.DbUserManager;
 import com.born.analog.module.User;
@@ -27,8 +29,7 @@ public class WelcomActivity extends BaseActivity {
         AnaLog.init(this);
 
         //是否登录
-        User user = DbUserManager.getInstance().getUser();
-        if(user==null){
+        if(TextUtils.isEmpty(AppMgr.getToken())){
             layout_wait.postDelayed(loginRun,1000);
         }else{
             layout_wait.postDelayed(mainRun,1000);

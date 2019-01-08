@@ -48,4 +48,8 @@ public class ToastUtil {
 
     }
 
+    public static void showFail(){
+        show(AppMgr.appContext.getResources().getString(R.string.toast_fail));
+    }
+
 }

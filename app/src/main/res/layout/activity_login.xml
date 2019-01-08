@@ -5,9 +5,9 @@
     android:background="@color/background">
 
     <LinearLayout
+        android:layout_marginTop="80dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:orientation="vertical"
         android:paddingLeft="80dp"
         android:paddingRight="80dp">
