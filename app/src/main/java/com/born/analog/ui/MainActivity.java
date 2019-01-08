@@ -14,6 +14,7 @@ import com.born.analog.AnaLog;
 import com.born.analog.R;
 import com.born.analog.module.Pro;
 import com.born.analog.module.SelectBean;
+import com.born.analog.ui.view.InfoDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,7 @@ import java.util.List;
 public class MainActivity extends BaseActivity {
     private GridView gridView;
     private List<SelectBean> beanList;
-    private TextView text_mypro;
+    private TextView text_mypro,text_info;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,11 +35,17 @@ public class MainActivity extends BaseActivity {
     private void initView() {
         gridView = findViewById(R.id.gridview);
         text_mypro = findViewById(R.id.text_mypro);
-
+        text_info = findViewById(R.id.text_info);
         text_mypro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this,ProActivity.class));
+            }
+        });
+        text_info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new InfoDialog(MainActivity.this).show();
             }
         });
     }

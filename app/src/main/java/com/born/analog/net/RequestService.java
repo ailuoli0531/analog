@@ -47,4 +47,12 @@ public interface RequestService {
      */
     @POST("/user/login")
     Call<BaseResponse<LoginModule>> login(@Body Map<String,String> params);
+
+    /**
+     * 修改昵称
+     * @param params
+     * @return
+     */
+    @POST("/user/changePersonalData")
+    Call<BaseResponse> changeName(@Body Map<String,String> params);
 }

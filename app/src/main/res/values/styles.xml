@@ -40,6 +40,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_centerVertical">true</item>
         <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:background">@drawable/bg_edit</item>
         <item name="android:paddingLeft">10dp</item>
         <item name="android:paddingRight">10dp</item>
     </style>
@@ -49,5 +50,12 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:textColor">@color/normal_text_color</item>
         <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="normal_btn">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/btn_press</item>
     </style>
 </resources>

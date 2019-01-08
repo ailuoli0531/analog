@@ -41,11 +41,21 @@ public class AppMgr {
         saveToken(loginModule.getToken());
     }
 
+    /**
+     * 清空用户数据
+     */
+    public static void clearUser(){
+        saveAccount("");
+        saveNickName("");
+        savePhone("");
+        saveToken("");
+    }
+
     private static void saveAccount(String accountId){
         AppMgr.accountId = accountId;
         save(USER_ACCOUNT,accountId);
     }
-    private static void saveNickName(String nickName){
+    public static void saveNickName(String nickName){
         AppMgr.nickName = nickName;
         save(USER_NAME,nickName);
     }

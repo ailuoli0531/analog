@@ -7,4 +7,5 @@
     <string name="login_psd_hint">密码</string>
     <string name="login">登录</string>
     <string name="toast_fail">获取数据失败</string>
+    <string name="login_out">退出登录</string>
 </resources>

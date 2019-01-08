@@ -1,5 +1,6 @@
 package com.born.analog.net;
 
+import com.born.analog.AppMgr;
 import com.born.analog.net.base.BaseRequestService;
 import com.born.analog.net.base.BaseResponse;
 import com.born.analog.net.base.SimpleCallBack;
@@ -61,6 +62,20 @@ public class RequestUtil {
         params.put("phoneNum", phone);
         params.put("pwd", psd);
         Call<BaseResponse<LoginModule>> call = service.login(params);
+        call.enqueue(callBack);
+    }
+
+    /**
+     * 修改昵称
+     * @param name
+     * @param callBack
+     */
+    public static void changeName(String name,SimpleCallBack callBack){
+        RequestService service = BaseRequestService.getBaseService().create(RequestService.class);
+        Map<String, String> params = new HashMap<>();
+        params.put("accountId", AppMgr.getAccountId());
+        params.put("nickName", name);
+        Call<BaseResponse> call = service.changeName(params);
         call.enqueue(callBack);
     }
 }
