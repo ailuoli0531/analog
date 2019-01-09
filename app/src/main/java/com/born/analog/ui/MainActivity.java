@@ -2,6 +2,7 @@ package com.born.analog.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,12 @@ import com.born.analog.AnaLog;
 import com.born.analog.R;
 import com.born.analog.module.Pro;
 import com.born.analog.module.SelectBean;
+import com.born.analog.net.RequestUtil;
+import com.born.analog.net.base.SimpleCallBack;
+import com.born.analog.net.module.EquipModule;
 import com.born.analog.ui.view.InfoDialog;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +36,7 @@ public class MainActivity extends BaseActivity {
 
         initView();
         initGoods();
+
     }
 
     private void initView() {
@@ -116,4 +123,26 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        queryEquip();
+    }
+
+    private void queryEquip(){
+        showDialog();
+        RequestUtil.queryEquip(new SimpleCallBack<List<EquipModule>>() {
+
+            @Override
+            public void onSuccess(List<EquipModule> equipModules) {
+                hideDialog();
+                Log.d("xxxx",equipModules.size()+"");
+            }
+
+            @Override
+            public void onFail() {
+                hideDialog();
+            }
+        });
+    }
 }

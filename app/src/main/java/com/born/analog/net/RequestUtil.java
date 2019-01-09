@@ -4,12 +4,14 @@ import com.born.analog.AppMgr;
 import com.born.analog.net.base.BaseRequestService;
 import com.born.analog.net.base.BaseResponse;
 import com.born.analog.net.base.SimpleCallBack;
+import com.born.analog.net.module.EquipModule;
 import com.born.analog.net.module.LoginModule;
 import com.born.analog.net.module.RegisterModule;
 
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -76,6 +78,18 @@ public class RequestUtil {
         params.put("accountId", AppMgr.getAccountId());
         params.put("nickName", name);
         Call<BaseResponse> call = service.changeName(params);
+        call.enqueue(callBack);
+    }
+
+    /**
+     * 查询装备
+     * @param callBack
+     */
+    public static void queryEquip(SimpleCallBack<List<EquipModule>> callBack){
+        RequestService service = BaseRequestService.getBaseService().create(RequestService.class);
+        Map<String, String> params = new HashMap<>();
+        params.put("accountId", AppMgr.getAccountId());
+        Call<BaseResponse<List<EquipModule>>> call = service.queryEquip(params);
         call.enqueue(callBack);
     }
 }
