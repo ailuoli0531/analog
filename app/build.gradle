@@ -42,4 +42,5 @@ dependencies {
     implementation('com.squareup.retrofit2:converter-gson:2.1.0') {
         exclude group: 'com.google.code.gson'
     }
+    implementation 'com.github.zyyoona7:EasyPopup:1.1.2'
 }

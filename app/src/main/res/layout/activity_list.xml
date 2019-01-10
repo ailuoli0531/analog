@@ -6,11 +6,37 @@
     android:layout_height="match_parent">
 
     <include layout="@layout/action_bar_layout"/>
-    <ListView
-        android:layout_marginTop="45dp"
-        android:id="@+id/goods_list"
+
+    <LinearLayout
         android:layout_below="@+id/action_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:paddingLeft="15dp"
+            android:paddingRight="10dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <ListView
+                android:layout_marginTop="45dp"
+                android:id="@+id/goods_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:paddingLeft="10dp"
+            android:paddingRight="15dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+            <include layout="@layout/layout_detail"/>
+        </RelativeLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>

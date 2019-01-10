@@ -45,7 +45,7 @@ public class AffixActivity extends BaseActivity implements View.OnClickListener 
     private TextView text_base;
     private List<AffixBean> affixBeanList;
     private AffixAdapter adapter;
-    private Button reset,crash,chou,use;
+    private Button crash,chou,use;
     private int position = -1;
     private Goods goods;
     @Override
@@ -69,7 +69,6 @@ public class AffixActivity extends BaseActivity implements View.OnClickListener 
         listView = findViewById(R.id.listview);
         text_name = findViewById(R.id.name);
         text_base = findViewById(R.id.base);
-        reset = findViewById(R.id.reset);
         crash = findViewById(R.id.crash);
         chou = findViewById(R.id.chou);
         use = findViewById(R.id.use);

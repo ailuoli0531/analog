@@ -4,6 +4,7 @@ import com.born.analog.util.IdUtil;
 
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.annotation.Keep;
 import org.greenrobot.greendao.annotation.Unique;
 
 /**
@@ -17,7 +18,7 @@ public class Goods {
         String goodsId = IdUtil.createId(type);
         goods.setType(type);
         goods.setId(goodsId);
-
+        goods.setCreate_time(System.currentTimeMillis());
         return goods;
     }
     public String getId() {

@@ -93,6 +93,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 ListActivity.open(MainActivity.this, beanList.get(i).getType());
+
             }
         });
     }

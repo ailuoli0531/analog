@@ -21,8 +21,11 @@ public class GoodsAdapter extends BaseAdapter {
     private LayoutInflater inflater;
     private List<Goods> goodsList;
     private onItemClick onItemClick;
+    private Context context;
     private boolean showNew = false;
+    private int position = -1;
     public GoodsAdapter(Context context){
+        this.context = context;
         inflater = LayoutInflater.from(context);
     }
 
@@ -39,6 +42,14 @@ public class GoodsAdapter extends BaseAdapter {
             showNew = false;
         }
 
+        notifyDataSetChanged();
+    }
+
+    public void notify(int position){
+        if(this.position == position){
+            return;
+        }
+        this.position = position;
         notifyDataSetChanged();
     }
 
@@ -95,6 +106,11 @@ public class GoodsAdapter extends BaseAdapter {
                 viewHolder.goods_use.setText("已穿戴");
             }else {
                 viewHolder.goods_use.setVisibility(View.GONE);
+            }
+            if(position==i){
+                viewHolder.goods_layout.setBackgroundColor(context.getResources().getColor(R.color.colorPrimaryDark));
+            }else{
+                viewHolder.goods_layout.setBackgroundColor(context.getResources().getColor(R.color.transparent));
             }
         }
 

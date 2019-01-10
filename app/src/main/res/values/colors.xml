@@ -14,8 +14,8 @@
     <color name="reds">#FF0000</color>
     <color name="blues">#0B5AC8</color>
     <color name="blue">#519FFF</color>
-    <color name="background">#00574B</color>
+    <color name="background">#008577</color>
     <color name="qing">#081523</color>
-    <color name="normal">#2070ab</color>
+    <color name="normal">#F3F3F3</color>
     <color name="normal_text_color">#515151</color>
 </resources>

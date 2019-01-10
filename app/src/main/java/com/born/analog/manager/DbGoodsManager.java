@@ -36,7 +36,7 @@ public class DbGoodsManager {
      */
     public List<Goods> getGoodsByType(int type){
         WhereCondition wc = GoodsDao.Properties.Type.eq(type);
-        return goodsDao.queryBuilder().where(wc).list();
+        return goodsDao.queryBuilder().where(wc).orderAsc(GoodsDao.Properties.Create_time).list();
     }
 
     /**
@@ -217,5 +217,21 @@ public class DbGoodsManager {
         }
         insert(goodsList);
         insert(goods);
+    }
+
+    /**
+     * 查询当前已经穿戴的装备
+     * @param type
+     * @return
+     */
+    public Goods getUsedGoodsByType(int type){
+        WhereCondition wc = GoodsDao.Properties.Use.eq(1);
+        WhereCondition wc2 = GoodsDao.Properties.Type.eq(type);
+        List<Goods> goods = goodsDao.queryBuilder().where(wc,wc2).list();
+        if(goods.isEmpty()){
+            return null;
+        }else{
+            return goods.get(0);
+        }
     }
 }
