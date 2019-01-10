@@ -58,6 +58,11 @@ public class LoadingDialog extends Dialog implements DialogInterface.OnDismissLi
         loading_progress.setText("");
     }
 
+    @Override
+    public void cancel() {
+        super.cancel();
+        rotate.cancel();
+    }
 
     @Override
     public void onDismiss(DialogInterface dialog) {
