@@ -25,6 +25,7 @@
                 <TextView
                     android:id="@+id/text_name"
                     style="@style/normal_text"
+                    android:textColor="@color/normal_text_color"
                     android:background="@drawable/bg_text"
                     android:gravity="center_vertical"
                     android:paddingLeft="20dp" />
@@ -33,6 +34,7 @@
                     android:id="@+id/edit_name"
                     style="@style/normal_text"
                     android:background="@drawable/bg_text"
+                    android:textColor="@color/normal_text_color"
                     android:maxLength="10"
                     android:imeOptions="actionDone"
                     android:singleLine="true"
@@ -43,6 +45,7 @@
             <TextView
                 android:id="@+id/text_phone"
                 style="@style/normal_text"
+                android:textColor="@color/normal_text_color"
                 android:background="@drawable/bg_text"
                 android:gravity="center_vertical"
                 android:paddingLeft="20dp" />
@@ -50,6 +53,7 @@
             <TextView
                 android:id="@+id/text_id"
                 style="@style/normal_text"
+                android:textColor="@color/normal_text_color"
                 android:background="@drawable/bg_text"
                 android:gravity="center_vertical"
                 android:paddingLeft="20dp" />
@@ -57,6 +61,7 @@
             <TextView
                 android:id="@+id/login_out"
                 style="@style/normal_btn"
+                android:textColor="@color/normal_text_color"
                 android:layout_gravity="center_horizontal"
                 android:text="@string/login_out" />
         </LinearLayout>

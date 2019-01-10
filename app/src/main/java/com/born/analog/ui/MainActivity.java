@@ -24,6 +24,7 @@ import com.born.analog.net.RequestUtil;
 import com.born.analog.net.base.SimpleCallBack;
 import com.born.analog.net.module.EquipModule;
 import com.born.analog.ui.view.InfoDialog;
+import com.born.analog.ui.view.TabControl;
 
 import org.greenrobot.greendao.query.WhereCondition;
 
@@ -33,29 +34,18 @@ import java.util.List;
 public class MainActivity extends BaseActivity implements View.OnClickListener {
     private GridView gridView,proList;
     private List<SelectBean> beanList;
-    private TextView text_info;
     private ProAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        NeedBack = true;
         initView();
+        new TabControl(this);
         initGoods();
-
     }
 
     private void initView() {
         gridView = findViewById(R.id.gridview);
-        text_info = findViewById(R.id.text_info);
-
-        text_info.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new InfoDialog(MainActivity.this).show();
-            }
-        });
-
         proList = findViewById(R.id.pro_list);
         adapter = new ProAdapter(this);
         proList.setAdapter(adapter);

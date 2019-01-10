@@ -32,11 +32,7 @@ public class InfoDialog extends Dialog implements View.OnClickListener, TextView
     public InfoDialog(BaseActivity context) {
         super(context,R.style.loading_dialog);
         activity = context;
-    }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         View loadView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_info,null,false);
         setContentView(loadView);
         setCanceledOnTouchOutside(true);

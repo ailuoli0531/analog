@@ -4,48 +4,45 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     tools:context=".ui.MainActivity">
 
-<RelativeLayout
-    android:layout_width="0dp"
-    android:layout_weight="1"
-    android:layout_height="match_parent">
+    <include layout="@layout/layout_main_tab" />
 
-    <GridView
-        android:id="@+id/gridview"
-        android:layout_centerInParent="true"
-        android:numColumns="2"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-</RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
-    <RelativeLayout
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:layout_height="match_parent">
+            <GridView
+                android:id="@+id/gridview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:numColumns="2" />
 
-        <GridView
-            android:numColumns="2"
-            android:layout_marginTop="25dp"
-            android:id="@+id/pro_list"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+        </RelativeLayout>
 
-        <TextView
-            android:id="@+id/text_info"
-            android:layout_below="@+id/pro_list"
-            android:textColor="@color/normal"
-            android:text="我的信息>>>"
-            android:minHeight="40dp"
-            android:gravity="center"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <GridView
+                android:id="@+id/pro_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="15dp"
+                android:numColumns="2" />
+
+        </RelativeLayout>
+    </LinearLayout>
 </LinearLayout>
