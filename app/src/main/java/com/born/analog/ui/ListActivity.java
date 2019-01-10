@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.born.analog.Helper;
@@ -50,6 +51,7 @@ public class ListActivity extends BaseActivity implements View.OnClickListener {
     private TextView text_base;
     private List<AffixBean> affixBeanList;
     private AffixAdapter affixAdapter;
+    private RelativeLayout btn_layout;
     private Button crash, chou, use;
     private int position = -1;
 
@@ -106,6 +108,7 @@ public class ListActivity extends BaseActivity implements View.OnClickListener {
         listView = findViewById(R.id.listview);
         text_name = findViewById(R.id.name);
         text_base = findViewById(R.id.base);
+        btn_layout = findViewById(R.id.btn_layout);
         crash = findViewById(R.id.crash);
         chou = findViewById(R.id.chou);
         use = findViewById(R.id.use);
@@ -123,9 +126,6 @@ public class ListActivity extends BaseActivity implements View.OnClickListener {
         listView.setAdapter(affixAdapter);
         //查询当前穿戴的装备
         goods = DbGoodsManager.getInstance().getUsedGoodsByType(type);
-        if (goods == null) {
-            return;
-        }
 
         refreshDetail();
     }
@@ -134,6 +134,11 @@ public class ListActivity extends BaseActivity implements View.OnClickListener {
      * 刷新右边详情的展示
      */
     private void refreshDetail() {
+        if (goods == null) {
+            btn_layout.setVisibility(View.GONE);
+            return;
+        }
+        btn_layout.setVisibility(View.VISIBLE);
         checkUse();
         affixBeanList = DbAffixManager.getInstance().getAffixListByGoodsId(goods.getId());
         refreshHead();

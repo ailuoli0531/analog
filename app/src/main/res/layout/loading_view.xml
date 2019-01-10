@@ -11,7 +11,7 @@
         android:layout_height="wrap_content">
     <ImageView
         android:id="@+id/loading_img"
-        android:src="@drawable/icon_loading"
+        android:src="@drawable/bagua"
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

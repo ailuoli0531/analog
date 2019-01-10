@@ -37,7 +37,7 @@ public class LoadingDialog extends Dialog implements DialogInterface.OnDismissLi
         rotate = AnimationUtils.loadAnimation(getContext(),R.anim.loading_anim);
         imageView.setAnimation(rotate);
 
-        imageView.setColorFilter(R.color.qing, PorterDuff.Mode.MULTIPLY);
+//        imageView.setColorFilter(R.color.qing, PorterDuff.Mode.MULTIPLY);
 
         setOnDismissListener(this);
 
