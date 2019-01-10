@@ -28,7 +28,6 @@ public class ProActivity extends BaseActivity {
     private GridView proList;
     private ProAdapter adapter;
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

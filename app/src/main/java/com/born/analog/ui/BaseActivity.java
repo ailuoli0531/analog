@@ -16,6 +16,10 @@ public class BaseActivity extends AppCompatActivity {
     private LoadingDialog dialog;
     private TargetBar targetBar;
     /**
+     * 默认屏蔽物理返回键
+     */
+    public boolean NeedBack = false;
+    /**
      * 跳转
      * @param intent
      */
@@ -70,5 +74,12 @@ public class BaseActivity extends AppCompatActivity {
 
     public void initBar(){
         targetBar = new TargetBar(this);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(NeedBack){
+            super.onBackPressed();
+        }
     }
 }
