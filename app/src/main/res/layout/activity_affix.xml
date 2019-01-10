@@ -3,19 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background">
+<include layout="@layout/action_bar_layout"/>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_alignParentRight="true"
-        android:src="@drawable/tablebg" />
 
     <LinearLayout
         android:layout_marginTop="35dp"
         android:paddingLeft="15dp"
+        android:layout_below="@+id/action_bar"
         android:layout_marginLeft="80dp"
         android:layout_marginRight="80dp"
-        android:background="@drawable/detailbg"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.inputmethod.InputMethodManager;
 
 import com.born.analog.ui.view.LoadingDialog;
+import com.born.analog.ui.view.TargetBar;
 
 /**
  * created by born on 2018/12/10.
@@ -13,6 +14,7 @@ import com.born.analog.ui.view.LoadingDialog;
  */
 public class BaseActivity extends AppCompatActivity {
     private LoadingDialog dialog;
+    private TargetBar targetBar;
     /**
      * 跳转
      * @param intent
@@ -64,5 +66,9 @@ public class BaseActivity extends AppCompatActivity {
                 imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
             }
         }
+    }
+
+    public void initBar(){
+        targetBar = new TargetBar(this);
     }
 }

@@ -42,6 +42,7 @@ public class ListActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
         perseIntent();
+        initBar();
         initView();
         initListener();
     }

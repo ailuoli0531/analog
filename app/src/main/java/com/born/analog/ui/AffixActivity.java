@@ -53,6 +53,7 @@ public class AffixActivity extends BaseActivity implements View.OnClickListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_affix);
         parseIntent();
+        initBar();
         initView();
         initData();
         initListener();
